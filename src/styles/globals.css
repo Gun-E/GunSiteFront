@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+@import '../../node_modules/slick-carousel/slick/slick.css';
+@import '../../node_modules/slick-carousel/slick/slick-theme.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+  font-family: 'Gowun Dodum', sans-serif;
+  font-weight: bold;
+  font-style: normal;
+  color: rgb(0, 0, 0);
+  background: rgb(243, 242, 248);
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.navbar {
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+.navbar-scrolled {
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+}
+
+.navbar-no-scroll {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.navbar a {
+  color: rgba(0, 0, 0, 0.7);
+  transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+  color: rgba(0, 0, 0, 1);
+}
