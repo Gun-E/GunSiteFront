@@ -12,37 +12,40 @@ export default function SimpleSlider() {
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
+        arrows: true,
     };
 
     return (
-        <Slider {...settings}>
-            <div className={styles.slide}>
-                <Image
-                    src="/images/image3.png"
-                    alt="Landscape picture"
-                    layout="fill"
-                    objectFit="contain"
-                    quality={100}
-                />
-            </div>
-            <div className={styles.slide}>
-                <Image
-                    src="/images/image2.png"
-                    alt="Landscape picture"
-                    layout="fill"
-                    objectFit="contain"
-                    quality={100}
-                />
-            </div>
-            <div className={styles.slide}>
-                <Image
-                    src="/images/image1.png"
-                    alt="Landscape picture"
-                    layout="fill"
-                    objectFit="contain"
-                    quality={100}
-                />
-            </div>
-        </Slider>
+        <div className={styles.sliderContainer}>
+            <Slider {...settings}>
+                <div className={styles.slide}>
+                    <Image
+                        src="/images/image3.png"
+                        alt="Landscape picture"
+                        fill
+                        style={{ objectFit: 'contain', width: '100%', height: '100%' }}
+                        quality={100}
+                    />
+                </div>
+                <div className={styles.slide}>
+                    <Image
+                        src="/images/image2.png"
+                        alt="Landscape picture"
+                        fill
+                        style={{ objectFit: 'contain', width: '100%', height: '100%' }}
+                        quality={100}
+                    />
+                </div>
+                <div className={styles.slide}>
+                    <Image
+                        src="/images/image1.png"
+                        alt="Landscape picture"
+                        fill
+                        style={{ objectFit: 'contain', width: '100%', height: '100%' }}
+                        quality={100}
+                    />
+                </div>
+            </Slider>
+        </div>
     );
 }

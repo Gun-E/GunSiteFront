@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { FaCode } from "react-icons/fa";
@@ -20,7 +21,7 @@ const Header = () => {
 
     return (
         <nav
-            className={`fixed w-full p-4 transition-shadow duration-200 ${isScrolled && !isHovered ? 'bg-white/70 backdrop-blur shadow-md' : 'bg-white shadow-gray-300'}`}
+            className={`fixed z-50 w-full p-4 transition-shadow duration-200 ${isScrolled && !isHovered ? 'bg-white bg-opacity-70 backdrop-blur shadow-md' : 'bg-white shadow-md'}`}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
