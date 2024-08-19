@@ -1,27 +1,18 @@
-import styles from '@/styles/MainPage.module.css';
+import ClientComponent from "@/components/ClientComponent";
+
 export default function Home() {
     return (
-        <div className={styles.mainPage}>
-            <div className={`${styles.subPage1} p-24`}>
-                <p className="text-4xl">
-                    test
-                </p>
+        <div>
+            <div style={{ paddingTop: "1.7cm" }}>
+                <ClientComponent />
+                <ClientComponent />
+                <ClientComponent />
+                <ClientComponent />
+                <ClientComponent />
+                <ClientComponent />
+                <ClientComponent />
             </div>
-            <div className={`${styles.subPage2} p-24`}>
-                <p className="text-4xl">
-                    test
-                </p>
-            </div>
-            <div className={`${styles.subPage1} p-24`}>
-                <p className="text-4xl">
-                    test
-                </p>
-            </div>
-            <div className={`${styles.subPage2} p-24`}>
-                <p className="text-4xl">
-                    test
-                </p>
-            </div>
+
         </div>
     );
 }
