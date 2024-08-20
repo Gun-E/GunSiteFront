@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styles from '@/styles/MainPage.module.css';
+import Image from "next/image";
 
 export default function Home() {
     const largePRef = useRef<HTMLParagraphElement | null>(null);
@@ -60,9 +61,22 @@ export default function Home() {
             </p>
             <button
                 ref={buttonRef}
-                className={`${styles.hidden} px-4 py-1.5 bg-sky-500 text-white font-semibold rounded-lg shadow-md hover:bg-sky-600`}>
+                className={`${styles.hidden} px-4 py-1 bg-sky-500 text-white font-semibold rounded-lg shadow-md hover:bg-sky-600`}>
                 버튼
             </button>
+            <div style={{
+                position: 'relative',
+                width: '100%',
+                height: '300px'
+            }}> {/* Ensure the parent container has a height */}
+                <Image
+                    src="/images/2590506.png"
+                    alt="Landscape picture"
+                    fill
+                    style={{objectFit: 'contain'}}
+                    quality={100}
+                />
+            </div>
         </div>
     );
 }
