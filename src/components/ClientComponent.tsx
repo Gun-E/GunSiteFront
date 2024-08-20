@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import styles from '@/styles/MainPage.module.css';
-import Image from "next/image";
+import Image from 'next/image';
 
 export default function Home() {
     const largePRef = useRef<HTMLParagraphElement | null>(null);
@@ -10,15 +10,16 @@ export default function Home() {
     const buttonRef = useRef<HTMLButtonElement | null>(null);
 
     useEffect(() => {
-        const largePElement = largePRef.current;
-        const smallPElement = smallPRef.current;
-        const buttonElement = buttonRef.current;
+        const elements = {
+            largeP: largePRef.current,
+            smallP: smallPRef.current,
+            button: buttonRef.current
+        };
 
         const animateElement = (element: HTMLElement | null, delay: number, isVisible: boolean) => {
             if (element) {
-                const action = isVisible ? 'add' : 'remove';
-                element.classList[action](styles.fadeIn);
-                element.classList[action === 'add' ? 'remove' : 'add'](styles.fadeOut);
+                element.classList.toggle(styles.fadeIn, isVisible);
+                element.classList.toggle(styles.fadeOut, !isVisible);
                 element.style.animationDelay = `${delay}s`;
             }
         };
@@ -27,26 +28,26 @@ export default function Home() {
             (entries) => {
                 entries.forEach((entry) => {
                     const { isIntersecting, target } = entry;
-                    if (target === largePElement) {
-                        animateElement(largePElement, 0, isIntersecting);
-                    } else if (target === smallPElement) {
-                        animateElement(smallPElement, 0.6, isIntersecting);
-                    } else if (target === buttonElement) {
-                        animateElement(buttonElement, 1.0, isIntersecting);
+                    if (target === elements.largeP) {
+                        animateElement(elements.largeP, 0, isIntersecting);
+                    } else if (target === elements.smallP) {
+                        animateElement(elements.smallP, 0.6, isIntersecting);
+                    } else if (target === elements.button) {
+                        animateElement(elements.button, 1.0, isIntersecting);
                     }
                 });
             },
             { rootMargin: '0px', threshold: 0.1 }
         );
 
-        if (largePElement) observer.observe(largePElement);
-        if (smallPElement) observer.observe(smallPElement);
-        if (buttonElement) observer.observe(buttonElement);
+        Object.values(elements).forEach(element => {
+            if (element) observer.observe(element);
+        });
 
         return () => {
-            if (largePElement) observer.unobserve(largePElement);
-            if (smallPElement) observer.unobserve(smallPElement);
-            if (buttonElement) observer.unobserve(buttonElement);
+            Object.values(elements).forEach(element => {
+                if (element) observer.unobserve(element);
+            });
         };
     }, []);
 
@@ -56,7 +57,7 @@ export default function Home() {
                 강건의 개발 사이트 입니다.
             </p>
             <p ref={smallPRef} className={`${styles.hidden} text-sm mb-3`}>
-                사이트에 오신 걸 환영합니다.<br/>
+                사이트에 오신 걸 환영합니다.<br />
                 현재 페이지 개발 중 입니다 !!
             </p>
             <button
@@ -64,16 +65,15 @@ export default function Home() {
                 className={`${styles.hidden} px-4 py-1 bg-sky-500 text-white font-semibold rounded-lg shadow-md hover:bg-sky-600`}>
                 버튼
             </button>
-            <div style={{
-                position: 'relative',
-                width: '100%',
-                height: '300px'
-            }}> {/* Ensure the parent container has a height */}
+            <div className="relative w-full h-64">
                 <Image
                     src="/images/2590506.png"
                     alt="Landscape picture"
                     fill
-                    style={{objectFit: 'contain'}}
+                    style={{
+                        position: 'absolute',
+                        objectFit: 'contain'
+                    }}
                     quality={100}
                 />
             </div>
