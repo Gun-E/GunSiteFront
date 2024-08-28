@@ -43,6 +43,11 @@ const Header = () => {
                         About
                     </Link>
                 </div>
+                <div className="space-x-4">
+                    <Link href="/login" className="text-gray-400 hover:text-sky-700 font-semibold" aria-label="로그인">
+                        로그인
+                    </Link>
+                </div>
             </div>
         </nav>
     );
