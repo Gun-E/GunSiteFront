@@ -8,20 +8,89 @@ export default function Home() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
+    const [name, setName] = useState('');
+    const [phone, setPhone] = useState('');
     const [error, setError] = useState('');
+    const [emailValid, setEmailValid] = useState(true);
+    const [emailAvailable, setEmailAvailable] = useState(true);
+    const [phoneValid, setPhoneValid] = useState(true);
     const router = useRouter();
+
+    // 이메일 형식 확인
+    const validateEmailFormat = (email: string) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
+    // 한글, 영문, 공백 허용하는 정규 표현식
+    const nameRegex = /^[가-힣a-zA-Z\s]+$/;
+
+    // 이름 유효성 검사 함수
+    const validateName = (name: string) => {
+        return nameRegex.test(name);
+    };
+    // 이메일 중복 검사
+    const checkEmailAvailability = async (email: string): Promise<boolean> => {
+        try {
+            const response = await axios.post('http://192.168.219.68:8080/user/email-duplicate-check', { email }, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            return response.data;
+        } catch (err) {
+            console.error('이메일 중복 검사 실패:', err);
+            return false;
+        }
+    };
+
+    // 전화번호 형식 확인
+    const validatePhoneFormat = (phone: string) => {
+        const phoneRegex = /^\d{10,11}$/; // 한국 전화번호 형식: 10~11자리 숫자
+        return phoneRegex.test(phone);
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        if (!email || !password || !confirmPassword || !name || !phone) {
+            setError('입력란은 비워둘 수 없습니다. 모든 필드를 입력해주세요.');
+            return;
+        }
+
+        if (!validateEmailFormat(email)) {
+            setEmailValid(false);
+            setError('올바른 이메일 형식이 아닙니다.');
+            return;
+        }
+        if (!validateName(name)) {
+            setError('이름은 한글 또는 영문으로만 입력해주세요.');
+            return;
+        }
+        const isEmailAvailable = await checkEmailAvailability(email);
+        if (isEmailAvailable) {
+            setEmailAvailable(false);
+            setError('이미 사용 중인 이메일입니다.');
+            return;
+        }
+
+        if (password.length < 8 || password.length > 14) {
+            setError('비밀번호는 8자에서 14자 사이여야 합니다.');
+            return;
+        }
 
         if (password !== confirmPassword) {
             setError('비밀번호가 일치하지 않습니다.');
             return;
         }
 
+        if (!validatePhoneFormat(phone)) {
+            setPhoneValid(false);
+            setError('올바른 전화번호 형식이 아닙니다.');
+            return;
+        }
+
         try {
-            const response = await axios.post('http://192.168.219.68:8080/register', { email, password, phoneNumber }, {
+            const response = await axios.post('http://192.168.219.68:8080/user/register', { email, password, name, phone }, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -44,9 +113,12 @@ export default function Home() {
                             type="email"
                             id="email"
                             value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                            className="w-full px-3 py-2 border border-gray-300 rounded"
+                            onChange={async (e) => {
+                                setEmail(e.target.value);
+                                setEmailValid(true);
+                                setEmailAvailable(true);
+                            }}
+                            className={`w-full px-3 py-2 border ${emailValid && emailAvailable ? 'border-gray-300' : 'border-red-500'} rounded`}
                         />
                     </div>
                     <div className="mb-4">
@@ -56,7 +128,6 @@ export default function Home() {
                             id="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            required
                             className="w-full px-3 py-2 border border-gray-300 rounded"
                         />
                     </div>
@@ -67,19 +138,30 @@ export default function Home() {
                             id="confirmPassword"
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
-                            required
                             className="w-full px-3 py-2 border border-gray-300 rounded"
                         />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="phoneNumber" className="block text-gray-700">전화번호</label>
+                        <label htmlFor="name" className="block text-gray-700">이름</label>
+                        <input
+                            type="text"
+                            id="name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            className="w-full px-3 py-2 border border-gray-300 rounded"
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <label htmlFor="phone" className="block text-gray-700">전화번호</label>
                         <input
                             type="tel"
-                            id="phoneNumber"
-                            value={phoneNumber}
-                            onChange={(e) => setPhoneNumber(e.target.value)}
-                            required
-                            className="w-full px-3 py-2 border border-gray-300 rounded"
+                            id="phone"
+                            value={phone}
+                            onChange={(e) => {
+                                setPhone(e.target.value);
+                                setPhoneValid(true);
+                            }}
+                            className={`w-full px-3 py-2 border ${phoneValid ? 'border-gray-300' : 'border-red-500'} rounded`}
                         />
                     </div>
                     <button

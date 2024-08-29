@@ -1,15 +1,23 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
+import {useAuth} from "@/app/context/AuthContext";
 
 export default function Home() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const { login } = useAuth();
     const router = useRouter();
 
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            router.push('/');
+        }
+    }, [router]);
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
@@ -20,7 +28,7 @@ export default function Home() {
                 }
             });
             const { token } = response.data;
-            localStorage.setItem('token', token);
+            login(token);
             router.push('/');
         } catch (err) {
             setError('로그인 실패: 이메일 또는 비밀번호를 확인해주세요.');

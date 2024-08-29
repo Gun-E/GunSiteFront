@@ -3,10 +3,14 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { FaCode } from "react-icons/fa";
+import { useRouter } from 'next/navigation';
+import {useAuth} from "@/app/context/AuthContext";
 
 const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
+    const { isLoggedIn, logout } = useAuth();
+    const router = useRouter();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -18,6 +22,7 @@ const Header = () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
+
 
     return (
         <nav
@@ -44,9 +49,21 @@ const Header = () => {
                     </Link>
                 </div>
                 <div className="space-x-4">
-                    <Link href="/login" className="text-gray-400 hover:text-sky-700 font-semibold" aria-label="로그인">
-                        로그인
-                    </Link>
+                    {isLoggedIn ? (
+                        <>
+                            <button
+                                onClick={logout}
+                                className="text-gray-400 hover:text-sky-700 font-semibold"
+                                aria-label="로그아웃"
+                            >
+                                로그아웃
+                            </button>
+                        </>
+                    ) : (
+                        <Link href="/login" className="text-gray-400 hover:text-sky-700 font-semibold" aria-label="로그인">
+                            로그인
+                        </Link>
+                    )}
                 </div>
             </div>
         </nav>
