@@ -1,0 +1,121 @@
+/* styles/Calendar.module.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: 0.05s ease-in;
+  --dim1: 11vw;
+  --dim2: 0.5vw;
+}
+
+body {
+  font-family: Roboto, sans-serif;
+}
+
+#title {
+  text-align: center;
+  padding: 24px;
+}
+
+#title > h1 {
+  font-size: 10vw;
+}
+
+.calendarFrame {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--dim2);
+  justify-content: center;
+  padding: var(--dim2);
+  width: 86vw;
+  margin: auto;
+}
+
+.dayFrame {
+  position: relative;
+  height: var(--dim1);
+  width: var(--dim1);
+  border-radius: 18px;
+  overflow: visible;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.dayFrame:hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(1px);
+  z-index: -1;
+}
+
+.dayFrame:active {
+  transform: scale(0.95);
+}
+
+.dayNumber {
+  font-size: 5vw;
+  text-shadow: 0 0 1vw rgba(0, 0, 0, 0.25);
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.dayLabel {
+  position: absolute;
+  width: var(--dim1);
+  color: rgba(255, 255, 255, 0);
+  background-color: rgba(0, 0, 0, 0);
+  font-size: 1vw;
+  font-family: 'Heebo', sans-serif;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.real:hover .dayLabel {
+  color: rgba(255, 255, 255, 1);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.real {
+  background-color: black;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.real:hover {
+  transform: scale(1.1, 1.1);
+}
+
+.real:hover .dayNumber {
+  color: rgba(0, 0, 0, 0);
+  text-shadow: 0 0 10vw rgba(0, 0, 0, 0);
+  z-index: -1;
+}
+
+.vinylRecord {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  height: 80%;
+  background: url('https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20240323_19%2F1711158082870d6wid_JPEG%2F112293925579887162_876222830.jpg&type=a340') no-repeat center center;
+  background-size: contain;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  transition: transform 0.3s ease;
+  z-index: -1;
+}
+
+.dayFrame:hover .vinylRecord {
+  transform: translate(-50%, calc(-50% - 60%)) scale(1) rotate(-360deg);
+  z-index: -2;
+}
