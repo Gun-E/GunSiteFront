@@ -31,7 +31,7 @@ export default function Home() {
     // 이메일 중복 검사
     const checkEmailAvailability = async (email: string): Promise<boolean> => {
         try {
-            const response = await axios.post('http://192.168.219.68:8080/user/email-duplicate-check', { email }, {
+            const response = await axios.post('https://gun-site-6fce5a54a3c1.herokuapp.com/user/email-duplicate-check', { email }, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -43,7 +43,6 @@ export default function Home() {
         }
     };
 
-    // 전화번호 형식 확인
     const validatePhoneFormat = (phone: string) => {
         const phoneRegex = /^\d{10,11}$/; // 한국 전화번호 형식: 10~11자리 숫자
         return phoneRegex.test(phone);

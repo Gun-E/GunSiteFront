@@ -8,7 +8,7 @@ import styles from '@/styles/Login.module.css';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 export default function Home() {
-    const [email, setEmail] = useState('');
+    const [id, setId] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const { login } = useAuth();
@@ -26,7 +26,7 @@ export default function Home() {
         e.preventDefault();
 
         try {
-            const response = await axios.post('http://192.168.219.68:8080/login', { email, password }, {
+            const response = await axios.post('https://gun-site-6fce5a54a3c1.herokuapp.com/login', { id, password }, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -35,7 +35,7 @@ export default function Home() {
             login(token);
             router.push('/');
         } catch (err) {
-            setError('로그인 실패: 이메일 또는 비밀번호를 확인해주세요.');
+            setError('이메일 또는 비밀번호를 확인해주세요.');
         }
     };
 
@@ -49,9 +49,9 @@ export default function Home() {
                     <div className="mb-5">
                         <input
                             type="email"
-                            id="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            id="id"
+                            value={id}
+                            onChange={(e) => setId(e.target.value)}
                             required
                             className="w-full px-3 py-2 border border-gray-300 rounded-xl focus:outline-none focus:border-blue-700 transition-colors duration-300"
                             placeholder="이메일 또는 전화번호"
