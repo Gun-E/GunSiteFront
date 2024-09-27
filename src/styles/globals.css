@@ -12,7 +12,7 @@ body {
   font-weight: normal;
   font-style: normal;
   color: rgb(0, 0, 0);
-  background: rgb(243, 242, 248);
+  background: rgb(245, 245, 247);
 }
 
 @layer utilities {
@@ -20,25 +20,6 @@ body {
     text-wrap: balance;
   }
 }
-
-.navbar {
-  transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
-}
-
-.navbar-scrolled {
-  background-color: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-}
-
-.navbar-no-scroll {
-  background-color: rgba(255, 255, 255, 1);
-}
-
-.navbar a {
-  color: rgba(0, 0, 0, 0.7);
-  transition: color 0.3s ease;
-}
-
-.navbar a:hover {
-  color: rgba(0, 0, 0, 1);
+.children{
+  padding-top: 1.5cm;
 }

@@ -1,0 +1,19 @@
+.headerNavbar {
+    position: fixed;
+    background-color: white;
+    z-index: 999;
+    width: 100%;
+    transition-property: box-shadow;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+.headerNavbar:hover {
+    background-color: white;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.scrolled {
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
