@@ -89,14 +89,14 @@ export default function Home() {
         }
 
         try {
-            const response = await axios.post('http://192.168.219.68:8080/user/register', { email, password, name, phone }, {
+            const response = await axios.post('https://gun-site-6fce5a54a3c1.herokuapp.com/user/register', { email, password, name, phone }, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
             });
             router.push('/login');
         } catch (err) {
-            setError('회원가입 실패: 다시 시도해주세요.');
+            setError('회원가입 실패 다시 시도해주세요.');
         }
     };
 
