@@ -1,4 +1,4 @@
-## 건 사이트 프론트엔드 next js
+## 건 사이트 프론트엔드 Next.js
 
 ## Getting Started
 
