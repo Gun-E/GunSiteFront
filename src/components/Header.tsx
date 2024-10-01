@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { FaCode, FaBars, FaTimes } from "react-icons/fa";
+import {FaCode, FaBars, FaTimes, FaChevronRight} from "react-icons/fa";
 import { usePathname } from 'next/navigation';
 import { useAuth } from "@/app/context/AuthContext";
 import styles from '@/styles/Header.module.css';
@@ -70,7 +70,9 @@ const Header = () => {
                             로그아웃
                         </button>
                     ) : (
-                        <Link href="/login" className="text-gray-400 hover:text-sky-700 font-semibold" aria-label="로그인">
+                        <Link href="/login"
+                              className={`text-gray-400 hover:text-sky-700 font-semibold ${pathname === '/login' ? 'text-sky-700' : ''}`}
+                              aria-label="로그인">
                             로그인
                         </Link>
                     )}
@@ -78,55 +80,61 @@ const Header = () => {
 
                 <div className="md:hidden">
                     <button onClick={toggleMenu} aria-label="메뉴 토글" className="text-gray-400">
-                        {isMenuOpen ? <FaTimes className="text-2xl"/> : <FaBars className="text-2xl"/>}
+                        <FaBars className="text-2xl"/>
                     </button>
                 </div>
 
                 <div className={`${styles.menuButton} ${isMenuOpen ? styles.menuButtonOpen : ''}`}>
-                    <div className="flex flex-col items-center space-y-4 py-4">
-                        <Link
-                            href="/"
-                            className={`text-gray-400 hover:text-sky-700 font-semibold ${pathname === '/' ? 'text-sky-700' : ''}`}
-                            aria-label="홈"
-                            onClick={toggleMenu}
-                        >
-                            홈
-                        </Link>
-                        <Link
-                            href="/board"
-                            className={`text-gray-400 hover:text-sky-700 font-semibold ${pathname === '/board' ? 'text-sky-700' : ''}`}
-                            aria-label="게시판"
-                            onClick={toggleMenu}
-                        >
-                            게시판
-                        </Link>
-                        <Link
-                            href="/about"
-                            className={`text-gray-400 hover:text-sky-700 font-semibold ${pathname === '/about' ? 'text-sky-700' : ''}`}
-                            aria-label="About"
-                            onClick={toggleMenu}
-                        >
-                            About
-                        </Link>
+                    <div className="flex flex-col items-start py-16 px-10 relative w-full">
+                        <button onClick={toggleMenu} className="text-gray-400 absolute right-4 top-4">
+                            <FaTimes className="text-4xl"/>
+                        </button>
                         {isLoggedIn ? (
                             <button
-                                onClick={() => {
-                                    logout();
-                                    toggleMenu();
-                                }}
-                                className="text-gray-400 hover:text-sky-700 font-semibold"
+                                onClick={logout}
+                                className="text-gray-400 text-3xl hover:text-sky-700 font-semibold my-10"
                                 aria-label="로그아웃"
                             >
                                 로그아웃
                             </button>
                         ) : (
-                            <Link href="/login" className="text-gray-400 hover:text-sky-700 font-semibold"
-                                  aria-label="로그인" onClick={toggleMenu}>
-                                로그인
+                            <Link
+                                href="/login"
+                                className={`text-sky-700 text-3xl font-semibold my-12 flex justify-between items-center w-full ${pathname === '/login' ? 'text-sky-700' : ''}`}
+                                aria-label="로그인"
+                                onClick={toggleMenu}
+                            >
+                                <span>로그인</span>
+                                <FaChevronRight />
                             </Link>
                         )}
+                        <Link
+                            href="/"
+                            className={`text-gray-400 text-3xl hover:text-sky-700 font-semibold ${pathname === '/' ? 'text-sky-700' : ''} border-b-2 py-9 border-gray-300 w-full`}
+                            aria-label="홈"
+                            onClick={toggleMenu}
+                        >
+                            <p className="pl-2">홈</p>
+                        </Link>
+                        <Link
+                            href="/board"
+                            className={`text-gray-400 text-3xl hover:text-sky-700 font-semibold ${pathname === '/board' ? 'text-sky-700' : ''} border-b-2 py-9 border-gray-300 w-full`}
+                            aria-label="게시판"
+                            onClick={toggleMenu}
+                        >
+                            <p className="pl-2">게시판</p>
+                        </Link>
+                        <Link
+                            href="/about"
+                            className={`text-gray-400 text-3xl hover:text-sky-700 font-semibold ${pathname === '/about' ? 'text-sky-700' : ''} py-9 border-gray-300 w-full`}
+                            aria-label="About"
+                            onClick={toggleMenu}
+                        >
+                            <p className="pl-2">About</p>
+                        </Link>
                     </div>
                 </div>
+
             </div>
         </nav>
     );
