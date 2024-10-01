@@ -78,18 +78,19 @@ const Header = () => {
                     )}
                 </div>
 
-                <div className="md:hidden">
+                <div className="md:hidden flex">
                     <button onClick={toggleMenu} aria-label="메뉴 토글" className="text-gray-400">
                         <FaBars className="text-2xl"/>
                     </button>
                 </div>
 
                 <div className={`${styles.menuButton} ${isMenuOpen ? styles.menuButtonOpen : ''}`}>
-                    <div className="flex flex-col items-start py-16 px-10 relative w-full">
-                        <button onClick={toggleMenu} className="text-gray-400 absolute right-5 top-5">
-                            <FaTimes className="text-4xl"/>
+                    <div className={styles.menuCloseButton}>
+                        <button onClick={toggleMenu} className="font-bold text-xl text-gray-400">
+                            <FaTimes className="text-3xl"/>
                         </button>
-
+                    </div>
+                    <div className="flex flex-col items-start py-10 px-10 relative w-full">
                         <Link
                             href="/"
                             className={`text-gray-400 text-2xl hover:text-sky-700 font-semibold ${pathname === '/' ? 'text-sky-700' : ''} border-b-2 py-9 border-gray-300 w-full`}
@@ -130,7 +131,7 @@ const Header = () => {
                                 onClick={toggleMenu}
                             >
                                 <span>로그인</span>
-                                <FaChevronRight />
+                                <FaChevronRight/>
                             </Link>
                         )}
                     </div>

@@ -44,3 +44,10 @@
     opacity: 1;
     pointer-events: auto;
 }
+.menuCloseButton {
+    width: 100%;
+    padding: 16px 2.5rem;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
