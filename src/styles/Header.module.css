@@ -1,19 +1,44 @@
 .headerNavbar {
     position: fixed;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 1);
     z-index: 999;
     width: 100%;
-    transition-property: box-shadow;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 150ms;
+    transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+.headerNavbar.scrolled {
+    background-color: rgba(255, 255, 255, 0.7);
 }
 .headerNavbar:hover {
     background-color: white;
     transition: background-color 0.2s ease, transform 0.2s ease;
 }
-.scrolled {
-    background-color: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+
+.menuContainer {
+    width: 100%;
+    padding: 0.75rem 2.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
+.menuButton {
+    position: absolute;
+    top: 56px;
+    right: 0;
+    width: 100%;
+    background-color: white;
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.menuButtonOpen {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+}
