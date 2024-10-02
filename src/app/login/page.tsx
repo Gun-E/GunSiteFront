@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { useAuth } from "@/app/context/AuthContext";
-import styles from '@/styles/Login.module.css';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 export default function Home() {
@@ -14,6 +13,7 @@ export default function Home() {
     const { login } = useAuth();
     const router = useRouter();
     const [showPassword, setShowPassword] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -24,6 +24,7 @@ export default function Home() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setLoading(true);
 
         try {
             const response = await axios.post('https://gun-site-6fce5a54a3c1.herokuapp.com/login', { id, password }, {
@@ -35,13 +36,19 @@ export default function Home() {
             login(token);
             router.push('/');
         } catch (err) {
-            setError('이메일 또는 비밀번호를 확인해주세요.');
+            if (axios.isAxiosError(err) && err.response) {
+                setError(err.response.data);
+            } else {
+                setError('서버와 통신을 실패 했습니다. 다시 시도해주세요.');
+            }
+        } finally {
+            setLoading(false);
         }
     };
 
     return (
-        <div className={styles.loginContainer}>
-            <div className={styles.loginFormContainer}>
+        <div className="customContainer">
+            <div className="customFormContainer">
                 <h1 className="text-3xl font-black mb-4 text-center">GunSite 계정</h1>
                 <h3 className="text-sm text-gray-700 font-black mb-16 text-center">GunSite 계정으로 로그인</h3>
                 {error && <p className="text-red-500 mb-4">{error}</p>}
@@ -57,9 +64,9 @@ export default function Home() {
                             placeholder="이메일 또는 전화번호"
                         />
                     </div>
-                    <div className="mb-12 relative"> {/* relative 추가 */}
+                    <div className="mb-12 relative">
                         <input
-                            type={showPassword ? 'text' : 'password'} // 타입 변경
+                            type={showPassword ? 'text' : 'password'}
                             id="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
@@ -70,16 +77,21 @@ export default function Home() {
                         <button
                             type="button"
                             onClick={() => setShowPassword(!showPassword)}
-                            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500" // 버튼 위치 조정
+                            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500"
                         >
-                            {showPassword ? <FaEyeSlash /> : <FaEye />}
+                            {showPassword ? <FaEyeSlash/> : <FaEye/>}
                         </button>
                     </div>
                     <button
                         type="submit"
-                        className="w-full py-2 px-4 bg-blue-500 text-white rounded-xl hover:bg-blue-600"
+                        disabled={loading}
+                        className={`w-full py-2 px-4 rounded-xl text-white transition-colors duration-300 ${loading ? 'bg-gray-400' : 'bg-blue-500 hover:bg-blue-600'} flex justify-center items-center`}
                     >
-                        로그인
+                        {loading ? (
+                            <div className="loader"></div>
+                        ) : (
+                            '로그인'
+                        )}
                     </button>
                 </form>
                 <div className="mt-12">

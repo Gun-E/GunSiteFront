@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export default function Home() {
     const [email, setEmail] = useState('');
@@ -14,20 +15,21 @@ export default function Home() {
     const [emailValid, setEmailValid] = useState(true);
     const [emailAvailable, setEmailAvailable] = useState(true);
     const [phoneValid, setPhoneValid] = useState(true);
+    const [showPassword, setShowPassword] = useState(false);
     const router = useRouter();
 
-    // 이메일 형식 확인
     const validateEmailFormat = (email: string) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     };
-    // 한글, 영문, 공백 허용하는 정규 표현식
+
     const nameRegex = /^[가-힣a-zA-Z\s]+$/;
 
     // 이름 유효성 검사 함수
     const validateName = (name: string) => {
         return nameRegex.test(name);
     };
+
     // 이메일 중복 검사
     const checkEmailAvailability = async (email: string): Promise<boolean> => {
         try {
@@ -36,7 +38,7 @@ export default function Home() {
                     'Content-Type': 'application/json'
                 }
             });
-            return response.data;
+            return response.data; // true or false based on availability
         } catch (err) {
             console.error('이메일 중복 검사 실패:', err);
             return false;
@@ -48,6 +50,26 @@ export default function Home() {
         return phoneRegex.test(phone);
     };
 
+    // 이메일 유효성 검사 및 중복 체크 useEffect
+    useEffect(() => {
+        const validateEmail = async () => {
+            if (email) {
+                setEmailValid(validateEmailFormat(email));
+                if (validateEmailFormat(email)) {
+                    const isEmailAvailable = await checkEmailAvailability(email);
+                    setEmailAvailable(isEmailAvailable);
+                } else {
+                    setEmailAvailable(true);
+                }
+            } else {
+                setEmailValid(true);
+                setEmailAvailable(true);
+            }
+        };
+
+        validateEmail();
+    }, [email]);
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
@@ -56,18 +78,17 @@ export default function Home() {
             return;
         }
 
-        if (!validateEmailFormat(email)) {
-            setEmailValid(false);
+        if (!emailValid) {
             setError('올바른 이메일 형식이 아닙니다.');
             return;
         }
+
         if (!validateName(name)) {
             setError('이름은 한글 또는 영문으로만 입력해주세요.');
             return;
         }
-        const isEmailAvailable = await checkEmailAvailability(email);
-        if (isEmailAvailable) {
-            setEmailAvailable(false);
+
+        if (!emailAvailable) {
             setError('이미 사용 중인 이메일입니다.');
             return;
         }
@@ -89,69 +110,88 @@ export default function Home() {
         }
 
         try {
-            const response = await axios.post('https://gun-site-6fce5a54a3c1.herokuapp.com/user/register', { email, password, name, phone }, {
+            const response = await axios.post('https://gun-site-6fce5a54a3c1.herokuapp.com/user/register', {
+                email,
+                password,
+                name,
+                phone
+            }, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
             });
             router.push('/login');
         } catch (err) {
-            setError('회원가입 실패 다시 시도해주세요.');
+            if (axios.isAxiosError(err) && err.response) {
+                setError(err.response.data);
+            } else {
+                setError('서버와 통신을 실패 했습니다. 다시 시도해주세요.');
+            }
         }
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-100">
-            <div className="w-full max-w-md p-8 bg-white shadow-md rounded-lg">
-                <h1 className="text-2xl font-bold mb-4">회원가입</h1>
+        <div className="customContainer">
+            <div className="customFormContainer">
+                <h1 className="text-3xl font-black mb-4 text-center">GunSite 계정 가입</h1>
+                <h3 className="text-sm text-gray-700 font-black mb-16 text-center">GunSite 계정으로 모든 서비스를 이용할 수 있습니다.</h3>
                 {error && <p className="text-red-500 mb-4">{error}</p>}
-                <form onSubmit={handleSubmit}>
-                    <div className="mb-4">
-                        <label htmlFor="email" className="block text-gray-700">이메일</label>
+                <form className="w-full" onSubmit={handleSubmit}>
+                    <div className="mb-5">
                         <input
                             type="email"
                             id="email"
                             value={email}
-                            onChange={async (e) => {
+                            onChange={(e) => {
                                 setEmail(e.target.value);
                                 setEmailValid(true);
                                 setEmailAvailable(true);
                             }}
-                            className={`w-full px-3 py-2 border ${emailValid && emailAvailable ? 'border-gray-300' : 'border-red-500'} rounded`}
+                            className={`w-full px-3 py-2 border ${emailValid && emailAvailable ? 'border-gray-300' : 'border-red-500'} rounded-xl focus:outline-none focus:border-blue-700 transition-colors duration-300`}
+                            placeholder="이메일"
                         />
                     </div>
-                    <div className="mb-4">
-                        <label htmlFor="password" className="block text-gray-700">비밀번호</label>
+                    <div className="mb-5 relative">
                         <input
-                            type="password"
+                            type={showPassword ? 'text' : 'password'}
                             id="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className="w-full px-3 py-2 border border-gray-300 rounded"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-xl focus:outline-none focus:border-blue-700 transition-colors duration-300"
+                            placeholder="암호"
                         />
+                        <button
+                            type="button"
+                            onClick={() => setShowPassword(!showPassword)}
+                            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+                        >
+                            {showPassword ? <FaEyeSlash/> : <FaEye/>}
+                        </button>
                     </div>
-                    <div className="mb-4">
-                        <label htmlFor="confirmPassword" className="block text-gray-700">비밀번호 확인</label>
+                    <div className="mb-14">
                         <input
                             type="password"
                             id="confirmPassword"
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
-                            className="w-full px-3 py-2 border border-gray-300 rounded"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-xl focus:outline-none focus:border-blue-700 transition-colors duration-300"
+                            placeholder="암호 확인"
                         />
                     </div>
-                    <div className="mb-4">
-                        <label htmlFor="name" className="block text-gray-700">이름</label>
+                    <div className="flex justify-center mb-14">
+                        <hr className="border-t border-gray-300 w-full"/>
+                    </div>
+                    <div className="mb-5">
                         <input
                             type="text"
                             id="name"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                            className="w-full px-3 py-2 border border-gray-300 rounded"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-xl focus:outline-none focus:border-blue-700 transition-colors duration-300"
+                            placeholder="이름"
                         />
                     </div>
-                    <div className="mb-4">
-                        <label htmlFor="phone" className="block text-gray-700">전화번호</label>
+                    <div className="mb-12">
                         <input
                             type="tel"
                             id="phone"
@@ -160,25 +200,17 @@ export default function Home() {
                                 setPhone(e.target.value);
                                 setPhoneValid(true);
                             }}
-                            className={`w-full px-3 py-2 border ${phoneValid ? 'border-gray-300' : 'border-red-500'} rounded`}
+                            className={`w-full px-3 py-2 border ${phoneValid ? 'border-gray-300' : 'border-red-500'} rounded-xl focus:outline-none focus:border-blue-700 transition-colors duration-300`}
+                            placeholder="전화번호"
                         />
                     </div>
                     <button
                         type="submit"
-                        className="w-full py-2 px-4 bg-green-500 text-white rounded hover:bg-green-600"
+                        className="w-full py-2 px-4 bg-blue-500 text-white rounded-xl hover:bg-blue-600"
                     >
                         회원가입
                     </button>
                 </form>
-                <div className="mt-4 flex items-center justify-between">
-                    <p className="m-0">이미 회원이신가요?</p>
-                    <a
-                        href="/login"
-                        className="py-1 px-3 bg-gray-400 text-white rounded-full hover:bg-gray-600 transition-colors duration-300"
-                        aria-label="로그인">
-                        로그인
-                    </a>
-                </div>
             </div>
         </div>
     );
