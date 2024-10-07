@@ -16,6 +16,7 @@ export default function Home() {
     const [emailAvailable, setEmailAvailable] = useState(true);
     const [phoneValid, setPhoneValid] = useState(true);
     const [showPassword, setShowPassword] = useState(false);
+    const [loading, setLoading] = useState(false);
     const router = useRouter();
 
     const validateEmailFormat = (email: string) => {
@@ -25,7 +26,6 @@ export default function Home() {
 
     const nameRegex = /^[가-힣a-zA-Z\s]+$/;
 
-    // 이름 유효성 검사 함수
     const validateName = (name: string) => {
         return nameRegex.test(name);
     };
@@ -38,7 +38,7 @@ export default function Home() {
                     'Content-Type': 'application/json'
                 }
             });
-            return response.data; // true or false based on availability
+            return response.data;
         } catch (err) {
             console.error('이메일 중복 검사 실패:', err);
             return false;
@@ -50,62 +50,50 @@ export default function Home() {
         return phoneRegex.test(phone);
     };
 
-    // 이메일 유효성 검사 및 중복 체크 useEffect
-    useEffect(() => {
-        const validateEmail = async () => {
-            if (email) {
-                setEmailValid(validateEmailFormat(email));
-                if (validateEmailFormat(email)) {
-                    const isEmailAvailable = await checkEmailAvailability(email);
-                    setEmailAvailable(isEmailAvailable);
-                } else {
-                    setEmailAvailable(true);
-                }
-            } else {
-                setEmailValid(true);
-                setEmailAvailable(true);
-            }
-        };
-
-        validateEmail();
-    }, [email]);
-
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-
+        setLoading(true);
         if (!email || !password || !confirmPassword || !name || !phone) {
             setError('입력란은 비워둘 수 없습니다. 모든 필드를 입력해주세요.');
+            setLoading(false);
             return;
         }
 
-        if (!emailValid) {
+        if (!validateEmailFormat) {
             setError('올바른 이메일 형식이 아닙니다.');
+            setLoading(false);
             return;
         }
 
         if (!validateName(name)) {
             setError('이름은 한글 또는 영문으로만 입력해주세요.');
+            setLoading(false);
             return;
         }
 
-        if (!emailAvailable) {
+
+        if (await checkEmailAvailability(email)) {
             setError('이미 사용 중인 이메일입니다.');
+            setLoading(false);
             return;
         }
 
         if (password.length < 8 || password.length > 14) {
             setError('비밀번호는 8자에서 14자 사이여야 합니다.');
+            setLoading(false);
             return;
         }
 
         if (password !== confirmPassword) {
             setError('비밀번호가 일치하지 않습니다.');
+            setLoading(false);
             return;
         }
 
         if (!validatePhoneFormat(phone)) {
             setPhoneValid(false);
             setError('올바른 전화번호 형식이 아닙니다.');
+            setLoading(false);
             return;
         }
 
@@ -120,13 +108,17 @@ export default function Home() {
                     'Content-Type': 'application/json'
                 }
             });
+
             router.push('/login');
+
         } catch (err) {
             if (axios.isAxiosError(err) && err.response) {
-                setError(err.response.data);
+                setError(err.response.data.error || '서버 오류가 발생했습니다.');
             } else {
                 setError('서버와 통신을 실패 했습니다. 다시 시도해주세요.');
             }
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -206,9 +198,14 @@ export default function Home() {
                     </div>
                     <button
                         type="submit"
-                        className="w-full py-2 px-4 bg-blue-500 text-white rounded-xl hover:bg-blue-600"
+                        disabled={loading}
+                        className={`w-full py-2 px-4 rounded-xl text-white transition-colors duration-300 ${loading ? 'bg-gray-400' : 'bg-blue-500 hover:bg-blue-600'} flex justify-center items-center`}
                     >
-                        회원가입
+                        {loading ? (
+                            <div className="loader"></div>
+                        ) : (
+                            '회원가입'
+                        )}
                     </button>
                 </form>
             </div>
