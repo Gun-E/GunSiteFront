@@ -21,6 +21,8 @@ export default function Home() {
                 element.classList.toggle(styles.fadeIn, isVisible);
                 element.classList.toggle(styles.fadeOut, !isVisible);
                 element.style.animationDelay = `${delay}s`;
+
+                element.setAttribute('aria-hidden', !isVisible ? 'true' : 'false');
             }
         };
 
@@ -52,12 +54,12 @@ export default function Home() {
     }, []);
 
     return (
-        <div className="relative bg-sky-200 p-14 flex justify-between items-center">
-            <div className="flex flex-col">
-                <p ref={largePRef} className={`${styles.hidden} text-2xl font-bold mb-3`}>
-                    강건의 개발 사이트 입니다.
+        <div className="relative bg-sky-200 flex justify-between items-center">
+            <div className="absolute top-11 sm:top-16 left-7 sm:left-14">
+                <p ref={largePRef} className={`${styles.hidden} text-lg sm:text-2xl font-bold mb-3`}>
+                    강건의 <br/>개발 사이트 입니다.
                 </p>
-                <p ref={smallPRef} className={`${styles.hidden} text-sm mb-3`}>
+                <p ref={smallPRef} className={`${styles.hidden} text-xs sm:text-sm mb-3`}>
                     사이트에 오신 걸 환영합니다.<br/>
                     현재 페이지 개발 중 입니다 !!
                 </p>
@@ -67,17 +69,19 @@ export default function Home() {
                     버튼
                 </button>
             </div>
+            <div className="flex flex-col">
 
-            <div>
+            </div>
+            <div className="flex flex-col">
                 <Image
                     src="/images/pic.png"
                     alt="Landscape picture"
+                    className="imageStyle"
                     style={{
                         objectFit: 'cover'
                     }}
                     width={400}
                     height={400}
-                    quality={100}
                 />
             </div>
         </div>

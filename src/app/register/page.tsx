@@ -98,7 +98,7 @@ export default function Home() {
         }
 
         try {
-            const response = await axios.post('https://gun-site-6fce5a54a3c1.herokuapp.com/user/register', {
+            await axios.post('https://gun-site-6fce5a54a3c1.herokuapp.com/user/register', {
                 email,
                 password,
                 name,
@@ -108,7 +108,6 @@ export default function Home() {
                     'Content-Type': 'application/json'
                 }
             });
-
             router.push('/login');
 
         } catch (err) {

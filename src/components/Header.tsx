@@ -16,7 +16,10 @@ const Header = () => {
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
-
+    const handleLogout = () => {
+        logout();
+        setIsMenuOpen(false);
+    };
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 0);
@@ -116,17 +119,19 @@ const Header = () => {
                             <p className="pl-2">About</p>
                         </Link>
                         {isLoggedIn ? (
+
                             <button
-                                onClick={logout}
-                                className="text-gray-400 text-2xl hover:text-sky-700 font-semibold my-10"
+                                onClick={handleLogout}
+                                className="text-gray-400 text-2xl font-semibold my-12 flex justify-between items-center w-full"
                                 aria-label="로그아웃"
                             >
-                                로그아웃
+                                <span>로그아웃</span>
+                                <FaChevronRight/>
                             </button>
                         ) : (
                             <Link
                                 href="/login"
-                                className={`text-sky-700 text-2xl font-semibold my-12 flex justify-between items-center w-full ${pathname === '/login' ? 'text-sky-700' : ''}`}
+                                className="text-sky-700 text-2xl font-semibold my-12 flex justify-between items-center w-full"
                                 aria-label="로그인"
                                 onClick={toggleMenu}
                             >
