@@ -55,7 +55,7 @@ export default function Home() {
 
     return (
         <div className="relative bg-sky-200 flex justify-between items-center">
-            <div className="absolute top-11 sm:top-16 left-7 sm:left-14">
+            <div className="absolute top-11 left-7 sm:top-16 sm:left-14 md:left-20 lg:left-36 xl:left-52">
                 <p ref={largePRef} className={`${styles.hidden} text-lg sm:text-2xl font-bold mb-3`}>
                     강건의 <br/>개발 사이트 입니다.
                 </p>
@@ -72,7 +72,7 @@ export default function Home() {
             <div className="flex flex-col">
 
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col md:pr-20 lg:pr-36 xl:pr-52">
                 <Image
                     src="/images/pic.png"
                     alt="Landscape picture"
