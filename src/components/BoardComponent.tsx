@@ -1,74 +1,102 @@
 'use client';
 
-import React, {useEffect, useRef} from 'react';
+import React, { useEffect, useRef } from 'react';
 import styles from '@/styles/MainPage.module.css';
-import Image from 'next/image';
 
 export default function BoardComponent() {
     const largePRef = useRef<HTMLParagraphElement | null>(null);
     const smallPRef = useRef<HTMLParagraphElement | null>(null);
     const buttonRef = useRef<HTMLButtonElement | null>(null);
+    const borderItemsRef = useRef<(HTMLDivElement | null)[]>([]);
 
     useEffect(() => {
         const elements = {
             largeP: largePRef.current,
             smallP: smallPRef.current,
-            button: buttonRef.current
+            button: buttonRef.current,
+            borderItems: borderItemsRef.current,
         };
 
-        const animateElement = (element: HTMLElement | null, delay: number, isVisible: boolean) => {
+        const animateElement = (element: HTMLElement | null, delay: number, isVisible: boolean, animationType: string) => {
             if (element) {
-                element.classList.toggle(styles.fadeIn, isVisible);
-                element.classList.toggle(styles.fadeOut, !isVisible);
+                if (animationType === 'fade') {
+                    element.classList.toggle(styles.fadeIn, isVisible);
+                    element.classList.toggle(styles.fadeOut, !isVisible);
+                } else if (animationType === 'flip') {
+                    element.classList.toggle(styles.flipIn, isVisible);
+                    element.classList.toggle(styles.itemHidden, !isVisible);
+                }
                 element.style.animationDelay = `${delay}s`;
-
-                element.setAttribute('aria-hidden', !isVisible ? 'true' : 'false');
             }
         };
 
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
-                    const {isIntersecting, target} = entry;
+                    const { isIntersecting, target } = entry;
+
                     if (target === elements.largeP) {
-                        animateElement(elements.largeP, 0, isIntersecting);
+                        animateElement(elements.largeP, 0, isIntersecting, 'fade');
                     } else if (target === elements.smallP) {
-                        animateElement(elements.smallP, 0.6, isIntersecting);
-                    } else if (target === elements.button) {
-                        animateElement(elements.button, 1.0, isIntersecting);
+                        animateElement(elements.smallP, 0.2, isIntersecting, 'fade');
+                    } else if (elements.borderItems.includes(target as HTMLDivElement)) {
+                        const index = elements.borderItems.indexOf(target as HTMLDivElement);
+                        if (index !== -1) {
+                            const isFirstItem = index % 2 === 0;
+                            if (isFirstItem) {
+                                const nextIndex = index + 1;
+                                animateElement(elements.borderItems[index], index * 0.2, isIntersecting, 'flip'); // 현재 아이템
+                                if (nextIndex < elements.borderItems.length) {
+                                    animateElement(elements.borderItems[nextIndex], index * 0.2, isIntersecting, 'flip'); // 다음 아이템
+                                }
+                            }
+                        }
                     }
                 });
             },
-            {rootMargin: '0px', threshold: 0.1}
+            { rootMargin: '0px', threshold: 0.1 }
         );
 
-        Object.values(elements).forEach(element => {
+        [elements.largeP, elements.smallP].forEach((element) => {
             if (element) observer.observe(element);
         });
 
+        elements.borderItems.forEach((item) => {
+            if (item) observer.observe(item!);
+        });
+
         return () => {
-            Object.values(elements).forEach(element => {
-                if (element) observer.unobserve(element);
+            [elements.largeP, elements.smallP, ...elements.borderItems].forEach((element) => {
+                if (element) observer.unobserve(element!);
             });
         };
     }, []);
 
     return (
         <div className="bg-white flex flex-col items-center pb-20">
-            <p ref={largePRef} className={`${styles.hidden} text-3xl sm:text-4xl md:text-5xl font-medium p-10`}>
-                게시판
-            </p>
+            <div className="flex flex-col p-10 justify-center items-center">
+                <p ref={largePRef}
+                   className={`${styles.hidden} text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium mb-5`}>
+                    게시판
+                </p>
+                <p ref={smallPRef} className={`${styles.hidden} text-xs sm:text-sm md:text-lg`}>
+                    자유 글 및 공부를 작성할 수 있는 게시판입니다
+                </p>
+            </div>
             <div className={styles.borderContainer}>
-                <div className={styles.borderItem}><p className={styles.borderText}>자유 게시판</p></div>
-                <div className={styles.borderItem}><p className={styles.borderText}>JAVA / SPRING</p></div>
-                <div className={styles.borderItem}><p className={styles.borderText}>HTML / CSS</p></div>
-                <div className={styles.borderItem}><p className={styles.borderText}>PYTHON / FAST API</p></div>
-                <div className={styles.borderItem}><p className={styles.borderText}>JAVA SCRIPT / NODE.JS</p></div>
-                <div className={styles.borderItem}><p className={styles.borderText}>DATABASE / SQL</p></div>
-                <div className={styles.borderItem}><p className={styles.borderText}>REACT / NEXT.JS</p></div>
-                <div className={styles.borderItem}><p className={styles.borderText}>AI</p></div>
-                <div className={styles.borderItem}><p className={styles.borderText}>DATA ANALYSIS</p></div>
-                <div className={styles.borderItem}><p className={styles.borderText}>CLOUD</p></div>
+                {["자유 게시판", "JAVA / SPRING", "HTML / CSS", "PYTHON / FAST API",
+                    "JAVA SCRIPT / NODE.JS", "DATABASE / SQL", "REACT / NEXT.JS",
+                    "DATA ANALYSIS", "CLOUD", "AI"].map((text, idx) => (
+                    <div
+                        ref={el => {
+                            borderItemsRef.current[idx] = el;
+                            return undefined;
+                        }}
+                        className={`${styles.borderItem} ${styles.itemHidden}`}
+                        key={idx}>
+                        <p className={styles.borderText}>{text}</p>
+                    </div>
+                ))}
             </div>
         </div>
     );
