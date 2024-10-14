@@ -1,15 +1,13 @@
-import ClientComponent from "@/components/ClientComponent";
+import HomeComponent from "@/components/HomeComponent";
+import BoardComponent from "@/components/BoardComponent";
+import Board from "@/components/Board";
 
 export default function Home() {
     return (
         <div>
-            <ClientComponent/>
-            <ClientComponent/>
-            <ClientComponent/>
-            <ClientComponent/>
-            <ClientComponent/>
-            <ClientComponent/>
-            <ClientComponent/>
+            <HomeComponent/>
+            <BoardComponent/>
+            <Board/>
         </div>
     );
 }

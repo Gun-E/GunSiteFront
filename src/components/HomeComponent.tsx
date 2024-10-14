@@ -4,7 +4,7 @@ import React, {useEffect, useRef} from 'react';
 import styles from '@/styles/MainPage.module.css';
 import Image from 'next/image';
 
-export default function Home() {
+export default function HomeComponent() {
     const largePRef = useRef<HTMLParagraphElement | null>(null);
     const smallPRef = useRef<HTMLParagraphElement | null>(null);
     const buttonRef = useRef<HTMLButtonElement | null>(null);
@@ -54,12 +54,12 @@ export default function Home() {
     }, []);
 
     return (
-        <div className="relative bg-sky-200 flex justify-between items-center">
+        <div className="relative bg-my-gray flex justify-between items-center">
             <div className="absolute top-11 left-7 sm:top-16 sm:left-14 md:left-20 lg:left-36 xl:left-52">
-                <p ref={largePRef} className={`${styles.hidden} text-lg sm:text-2xl font-bold mb-3`}>
+                <p ref={largePRef} className={`${styles.hidden} text-lg sm:text-2xl md:text-3xl font-bold mb-3`}>
                     강건의 <br/>개발 사이트 입니다.
                 </p>
-                <p ref={smallPRef} className={`${styles.hidden} text-xs sm:text-sm mb-3`}>
+                <p ref={smallPRef} className={`${styles.hidden} text-xs sm:text-sm md:text-lg mb-3`}>
                     사이트에 오신 걸 환영합니다.<br/>
                     현재 페이지 개발 중 입니다 !!
                 </p>

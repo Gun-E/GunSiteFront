@@ -23,3 +23,106 @@
 .hidden {
     opacity: 0;
 }
+
+.borderContainer {
+    width: 90%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.borderContainer {
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.borderItem {
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    width: 90%;
+    height: auto;
+    background: url("https://www.transparenttextures.com/patterns/retina-wood.png");
+    background-size: cover;
+    border-radius: 3px;
+    box-shadow: #cccccc 4px 10px 10px;
+    padding: 8px 12px;
+}
+
+.borderItem:nth-child(odd) {
+    background-color: rgba(210, 145, 78, 0.5);
+}
+
+.borderItem:nth-child(even) {
+    background-color: rgba(255, 207, 136, 0.5);
+}
+
+.borderItem:nth-child(3n+1) {
+    background-color: rgba(220, 175, 100, 0.5);
+}
+
+.borderItem:nth-child(3n+2) {
+    background-color: rgba(255, 183, 77, 0.5);
+}
+
+
+
+.borderText {
+    font-size: 9px;
+    font-weight: 580;
+}
+@media (min-width: 370px) {
+    .borderText {
+        font-size: 10px;
+    }
+    .borderItem {
+        padding: 8px 13px;
+    }
+}
+@media (min-width: 492px) {
+    .borderText {
+        font-size: 14px;
+    }
+    .borderItem {
+        padding: 8px 15px;
+    }
+}
+@media (min-width: 640px) {
+    .borderText {
+        font-size: 16px;
+    }
+    .borderItem {
+        padding: 8px 15px;
+    }
+}
+
+@media (min-width: 768px) {
+    .borderText {
+        font-size: 20px;
+    }
+    .borderItem {
+        padding: 8px 15px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .borderText {
+        font-size: 22px;
+    }
+    .borderItem {
+        padding: 8px 15px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .borderText {
+        font-size: 24px;
+    }
+
+    .borderItem {
+        padding: 12px 18px;
+    }
+}

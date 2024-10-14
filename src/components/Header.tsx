@@ -35,7 +35,7 @@ const Header = () => {
         <nav className={`${styles.headerNavbar} ${isScrolled && !isMenuOpen ? styles.scrolled : ''}`}>
             <div className={styles.menuContainer}>
                 <div className="text-black font-bold text-xl">
-                    <Link href="/" className="flex items-center font-bold text-black text-2xl">
+                    <Link href="/" className="flex items-center logo text-black text-2xl">
                         GunSite
                         <FaCode className="ml-2 text-sky-700" aria-hidden="true"/>
                     </Link>

@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
 @import '../../node_modules/slick-carousel/slick/slick.css';
 @import '../../node_modules/slick-carousel/slick/slick-theme.css';
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
 
 @tailwind base;
 @tailwind components;
@@ -8,13 +9,16 @@
 
 
 body {
-  font-family: 'Gowun Dodum', sans-serif;
+  font-family: 'pretendard', sans-serif;
   font-weight: normal;
   font-style: normal;
   color: rgb(0, 0, 0);
   background: rgb(245, 245, 247);
 }
-
+.logo{
+  font-family: 'Gowun Dodum', sans-serif;
+  font-weight: 700;
+}
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -67,4 +71,9 @@ body {
     width: 500px;
   }
 }
-
+.bg-brown{
+  background-color: rgb(251, 221, 190);
+}
+.bg-my-gray{
+  background-color: rgb(250, 251, 251);
+}
