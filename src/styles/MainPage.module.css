@@ -32,18 +32,8 @@
     gap: 12px;
 }
 
-.borderContainer {
-    width: 90%;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-}
-
 .borderItem {
-    display: flex;
-    justify-self: center;
-    align-items: center;
-    width: 90%;
+    width: 100%;
     height: auto;
     background: url("https://www.transparenttextures.com/patterns/retina-wood.png");
     background-size: cover;

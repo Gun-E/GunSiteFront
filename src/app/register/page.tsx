@@ -124,8 +124,9 @@ export default function Home() {
     return (
         <div className="customContainer">
             <div className="customFormContainer">
-                <h1 className="text-3xl font-black mb-4 text-center">GunSite 계정 가입</h1>
-                <h3 className="text-sm text-gray-700 font-black mb-16 text-center">GunSite 계정으로 모든 서비스를 이용할 수 있습니다.</h3>
+                <h1 className="text-3xl mb-4 text-center"><span className="logo">GunSite</span> 계정 가입</h1>
+                <h3 className="text-sm text-gray-700 mb-16 text-center"><span
+                    className="logo">GunSite</span> 계정으로 모든 서비스를 이용할 수 있습니다.</h3>
                 {error && <p className="text-red-500 mb-4">{error}</p>}
                 <form className="w-full" onSubmit={handleSubmit}>
                     <div className="mb-5">

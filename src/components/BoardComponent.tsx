@@ -89,7 +89,7 @@ export default function BoardComponent() {
             <div className="flex flex-col p-10 justify-center items-center">
                 <p ref={largePRef}
                    className={`${styles.hidden} text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium mb-5`}>
-                    게시판
+                    BOARD
                 </p>
                 <p ref={smallPRef} className={`${styles.hidden} text-xs sm:text-sm md:text-lg`}>
                     자유 글 및 공부 자료를 작성할 수 있는 게시판입니다
@@ -97,7 +97,7 @@ export default function BoardComponent() {
             </div>
             <div className={styles.borderContainer}>
                 {categories.map((category, idx) => (
-                    <Link key={idx} href={category.path} passHref>
+                    <Link key={idx} href={category.path} className="flex justify-center items-center" passHref>
                         <div
                             ref={el => {
                                 borderItemsRef.current[idx] = el;

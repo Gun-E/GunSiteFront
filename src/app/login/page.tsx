@@ -1,16 +1,16 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import React, {useEffect, useState} from 'react';
+import {useRouter} from 'next/navigation';
 import axios from 'axios';
-import { useAuth } from "@/app/context/AuthContext";
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import {useAuth} from "@/app/context/AuthContext";
+import {FaEye, FaEyeSlash} from 'react-icons/fa';
 
 export default function Home() {
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const { login } = useAuth();
+    const {login} = useAuth();
     const router = useRouter();
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -27,12 +27,12 @@ export default function Home() {
         setLoading(true);
 
         try {
-            const response = await axios.post('https://gun-site-6fce5a54a3c1.herokuapp.com/login', { id, password }, {
+            const response = await axios.post('https://gun-site-6fce5a54a3c1.herokuapp.com/login', {id, password}, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
             });
-            const { token } = response.data;
+            const {token} = response.data;
             login(token);
             router.push('/');
         } catch (err) {
@@ -49,8 +49,8 @@ export default function Home() {
     return (
         <div className="customContainer">
             <div className="customFormContainer">
-                <h1 className="text-3xl font-black mb-4 text-center">GunSite 계정</h1>
-                <h3 className="text-sm text-gray-700 font-black mb-16 text-center">GunSite 계정으로 로그인</h3>
+                <h1 className="text-3xl mb-4 text-center"><span className="logo">GunSite</span> 계정</h1>
+                <h3 className="text-sm text-gray-700 mb-16 text-center"><span className="logo">GunSite</span> 계정으로 로그인</h3>
                 {error && <p className="text-red-500 mb-4">{error}</p>}
                 <form className="w-full" onSubmit={handleSubmit}>
                     <div className="mb-5">

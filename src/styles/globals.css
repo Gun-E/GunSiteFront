@@ -80,4 +80,6 @@ body {
 .bg-my-gray{
   background-color: rgb(250, 251, 251);
 }
-
+.my-blue{
+  color: rgb(0, 168, 222);
+}

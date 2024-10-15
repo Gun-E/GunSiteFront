@@ -49,13 +49,13 @@ export default function Home() {
                     {categories.map((category, index) => (
                         <div key={index}
                              className="flex items-center rounded-xl bg-white transition-shadow duration-300 p-4 sm:p-6 overflow-hidden">
-                            <div className="text-blue-500">{category.icon}</div>
+                            <div className="my-blue">{category.icon}</div>
                             <div className="ml-5 flex-1">
                                 <p className="text-lg sm:text-2xl font-bold text-gray-800">{category.name}</p>
-                                <p className="text-sm sm:text-md text-gray-600">{category.description}</p>
+                                <p className="text-sm sm:text-md text-gray-600 mt-1">{category.description}</p>
                                 <div className="mt-2">
                                     <Link href={category.path}
-                                          className="px-4 py-1 bg-brown text-white font-semibold rounded-full shadow-md duration-300">
+                                          className="px-4 py-1 bg-brown text-white font-semibold rounded-full  duration-300">
                                         이동
                                     </Link>
                                 </div>
