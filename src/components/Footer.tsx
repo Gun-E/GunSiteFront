@@ -1,8 +1,8 @@
-"use client"
+"use client";
 import Link from 'next/link';
-import {FaGithub, FaTwitter, FaLinkedin, FaCode} from 'react-icons/fa';
+import { FaGithub, FaTwitter, FaInstagram, FaCode } from 'react-icons/fa'; // Import FaInstagram
 import Image from "next/image";
-import {useState} from "react";
+import { useState } from "react";
 
 const Footer = () => {
     const [isHovered, setIsHovered] = useState(false);
@@ -13,7 +13,7 @@ const Footer = () => {
                 <div className="flex items-center">
                     <Link href="/" className="flex items-center text-xl">
                         <span className="text-2xl font-bold">GunSite</span>
-                        <FaCode className="ml-2 text-sky-700"/>
+                        <FaCode className="ml-2 text-sky-700" />
                     </Link>
                 </div>
                 <div className="flex space-x-4">
@@ -35,8 +35,8 @@ const Footer = () => {
                             height={24}
                         />
                     </Link>
-                    <Link href="https://linkedin.com" target="_blank" className="hover:text-gray-700">
-                        <FaLinkedin size={24} />
+                    <Link href="https://www.instagram.com/9un.99/" target="_blank" className="hover:text-gray-700"> {/* Change href to Instagram */}
+                        <FaInstagram size={24} />
                     </Link>
                 </div>
             </div>
