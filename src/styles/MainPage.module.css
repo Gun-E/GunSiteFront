@@ -47,34 +47,37 @@
     height: auto;
     background: url("https://www.transparenttextures.com/patterns/retina-wood.png");
     background-size: cover;
-    border-radius: 3px;
-    box-shadow: #cccccc 4px 10px 10px;
+    border-radius: 7px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 8px 12px;
     perspective: 1000px;
     opacity: 0;
 }
 
 .borderItem:nth-child(odd) {
-    background-color: rgba(210, 145, 78, 0.5);
+    background-color: rgba(246, 131, 0, 0.3);
 }
 
 .borderItem:nth-child(even) {
-    background-color: rgba(255, 207, 136, 0.5);
+    background-color: rgba(213, 108, 3, 0.3);
 }
 
 .borderItem:nth-child(3n+1) {
-    background-color: rgba(220, 175, 100, 0.5);
+    background-color: rgba(253, 158, 3, 0.3);
 }
 
 .borderItem:nth-child(3n+2) {
-    background-color: rgba(255, 183, 77, 0.5);
+    background-color: rgba(250, 147, 2, 0.3);
 }
 
 
 
 .borderText {
+    font-family: "Afacad Flux", 'pretendard',  sans-serif;
+    letter-spacing: 2px;
     font-size: 9px;
-    font-weight: 580;
+    font-weight: 510;
+    color: #303030;
 }
 @media (min-width: 370px) {
     .borderText {
@@ -147,4 +150,7 @@
 .itemHidden {
     opacity: 0;
     transition: transform 0.6s ease, opacity 0.6s ease;
+}
+.borderItem:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }

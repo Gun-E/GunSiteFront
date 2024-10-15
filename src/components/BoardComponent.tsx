@@ -80,7 +80,7 @@ export default function BoardComponent() {
                     게시판
                 </p>
                 <p ref={smallPRef} className={`${styles.hidden} text-xs sm:text-sm md:text-lg`}>
-                    자유 글 및 공부를 작성할 수 있는 게시판입니다
+                    자유 글 및 공부 자료를 작성할 수 있는 게시판입니다
                 </p>
             </div>
             <div className={styles.borderContainer}>
