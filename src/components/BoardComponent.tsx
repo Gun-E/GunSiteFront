@@ -8,7 +8,7 @@ export default function BoardComponent() {
     const largePRef = useRef<HTMLParagraphElement | null>(null);
     const smallPRef = useRef<HTMLParagraphElement | null>(null);
     const borderItemsRef = useRef<(HTMLDivElement | null)[]>([]);
-    const [hasAnimated, setHasAnimated] = useState(false);
+    const [hasAnimated, setHasAnimated] = useState(false); // State to track if items have animated
 
     useEffect(() => {
         const elements = {
@@ -56,7 +56,6 @@ export default function BoardComponent() {
                     }
                 });
 
-                // Set hasAnimated to true after first animation
                 if (!hasAnimated) {
                     setHasAnimated(true);
                 }
