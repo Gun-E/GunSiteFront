@@ -1,19 +1,18 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
+import Link from 'next/link'; // Link 컴포넌트 import
 import styles from '@/styles/MainPage.module.css';
 
 export default function BoardComponent() {
     const largePRef = useRef<HTMLParagraphElement | null>(null);
     const smallPRef = useRef<HTMLParagraphElement | null>(null);
-    const buttonRef = useRef<HTMLButtonElement | null>(null);
     const borderItemsRef = useRef<(HTMLDivElement | null)[]>([]);
 
     useEffect(() => {
         const elements = {
             largeP: largePRef.current,
             smallP: smallPRef.current,
-            button: buttonRef.current,
             borderItems: borderItemsRef.current,
         };
 
@@ -72,6 +71,19 @@ export default function BoardComponent() {
         };
     }, []);
 
+    const categories = [
+        { name: "자유 게시판", path: "/free-board" },
+        { name: "JAVA / SPRING", path: "/java-spring" },
+        { name: "HTML / CSS", path: "/html-css" },
+        { name: "PYTHON / FAST API", path: "/python-fastapi" },
+        { name: "JAVASCRIPT / NODE.JS", path: "/javascript-nodejs" },
+        { name: "DATABASE / SQL", path: "/database-sql" },
+        { name: "REACT / NEXT.JS", path: "/react-next" },
+        { name: "DATA ANALYSIS", path: "/data-analysis" },
+        { name: "CLOUD", path: "/cloud" },
+        { name: "AI", path: "/ai" },
+    ];
+
     return (
         <div className="bg-white flex flex-col items-center pb-20">
             <div className="flex flex-col p-10 justify-center items-center">
@@ -84,18 +96,17 @@ export default function BoardComponent() {
                 </p>
             </div>
             <div className={styles.borderContainer}>
-                {["자유 게시판", "JAVA / SPRING", "HTML / CSS", "PYTHON / FAST API",
-                    "JAVA SCRIPT / NODE.JS", "DATABASE / SQL", "REACT / NEXT.JS",
-                    "DATA ANALYSIS", "CLOUD", "AI"].map((text, idx) => (
-                    <div
-                        ref={el => {
-                            borderItemsRef.current[idx] = el;
-                            return undefined;
-                        }}
-                        className={`${styles.borderItem} ${styles.itemHidden}`}
-                        key={idx}>
-                        <p className={styles.borderText}>{text}</p>
-                    </div>
+                {categories.map((category, idx) => (
+                    <Link key={idx} href={category.path} passHref>
+                        <div
+                            ref={el => {
+                                borderItemsRef.current[idx] = el;
+                                return undefined;
+                            }}
+                            className={`${styles.borderItem} ${styles.itemHidden}`}>
+                            <p className={styles.borderText}>{category.name}</p>
+                        </div>
+                    </Link>
                 ))}
             </div>
         </div>

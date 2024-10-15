@@ -52,22 +52,32 @@
     padding: 8px 12px;
     perspective: 1000px;
     opacity: 0;
+    transition-duration: 300ms;
 }
 
 .borderItem:nth-child(odd) {
     background-color: rgba(246, 131, 0, 0.3);
 }
-
+.borderItem:nth-child(odd):hover {
+    background-color: rgba(158, 85, 2, 0.3);
+}
 .borderItem:nth-child(even) {
     background-color: rgba(213, 108, 3, 0.3);
 }
-
+.borderItem:nth-child(even):hover {
+    background-color: rgba(140, 71, 0, 0.3);
+}
 .borderItem:nth-child(3n+1) {
     background-color: rgba(253, 158, 3, 0.3);
 }
-
+.borderItem:nth-child(3n+1):hover {
+    background-color: rgba(135, 84, 0, 0.3);
+}
 .borderItem:nth-child(3n+2) {
     background-color: rgba(250, 147, 2, 0.3);
+}
+.borderItem:nth-child(3n+2):hover {
+    background-color: rgba(149, 88, 2, 0.3);
 }
 
 
@@ -150,7 +160,4 @@
 .itemHidden {
     opacity: 0;
     transition: transform 0.6s ease, opacity 0.6s ease;
-}
-.borderItem:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }

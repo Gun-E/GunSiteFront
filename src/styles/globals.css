@@ -72,8 +72,12 @@ body {
   }
 }
 .bg-brown{
-  background-color: rgb(251, 221, 190);
+  background-color: rgb(205, 190, 164);
+}
+.bg-brown:hover{
+  background-color: rgb(188, 179, 154);
 }
 .bg-my-gray{
   background-color: rgb(250, 251, 251);
 }
+

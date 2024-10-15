@@ -65,7 +65,7 @@ export default function HomeComponent() {
                 </p>
                 <button
                     ref={buttonRef}
-                    className={`${styles.hidden} px-4 py-1 bg-black text-white font-semibold rounded-full shadow-md hover:bg-gray-500 duration-300`}>
+                    className={`${styles.hidden} px-4 py-1 bg-brown text-white font-semibold rounded-full shadow-md duration-300`}>
                     버튼
                 </button>
             </div>
