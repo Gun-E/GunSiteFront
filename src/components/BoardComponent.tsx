@@ -1,13 +1,14 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
-import Link from 'next/link'; // Link 컴포넌트 import
+import React, { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import styles from '@/styles/MainPage.module.css';
 
 export default function BoardComponent() {
     const largePRef = useRef<HTMLParagraphElement | null>(null);
     const smallPRef = useRef<HTMLParagraphElement | null>(null);
     const borderItemsRef = useRef<(HTMLDivElement | null)[]>([]);
+    const [hasAnimated, setHasAnimated] = useState(false);
 
     useEffect(() => {
         const elements = {
@@ -34,24 +35,31 @@ export default function BoardComponent() {
                 entries.forEach((entry) => {
                     const { isIntersecting, target } = entry;
 
-                    if (target === elements.largeP) {
-                        animateElement(elements.largeP, 0, isIntersecting, 'fade');
-                    } else if (target === elements.smallP) {
-                        animateElement(elements.smallP, 0.2, isIntersecting, 'fade');
-                    } else if (elements.borderItems.includes(target as HTMLDivElement)) {
-                        const index = elements.borderItems.indexOf(target as HTMLDivElement);
-                        if (index !== -1) {
-                            const isFirstItem = index % 2 === 0;
-                            if (isFirstItem) {
-                                const nextIndex = index + 1;
-                                animateElement(elements.borderItems[index], index * 0.2, isIntersecting, 'flip'); // 현재 아이템
-                                if (nextIndex < elements.borderItems.length) {
-                                    animateElement(elements.borderItems[nextIndex], index * 0.2, isIntersecting, 'flip'); // 다음 아이템
+                    if (!hasAnimated && isIntersecting) { // Check if items have already animated
+                        if (target === elements.largeP) {
+                            animateElement(elements.largeP, 0, true, 'fade');
+                        } else if (target === elements.smallP) {
+                            animateElement(elements.smallP, 0.2, true, 'fade');
+                        } else if (elements.borderItems.includes(target as HTMLDivElement)) {
+                            const index = elements.borderItems.indexOf(target as HTMLDivElement);
+                            if (index !== -1) {
+                                const isFirstItem = index % 2 === 0;
+                                if (isFirstItem) {
+                                    const nextIndex = index + 1;
+                                    animateElement(elements.borderItems[index], index * 0.2, true, 'flip');
+                                    if (nextIndex < elements.borderItems.length) {
+                                        animateElement(elements.borderItems[nextIndex], index * 0.2, true, 'flip');
+                                    }
                                 }
                             }
                         }
                     }
                 });
+
+                // Set hasAnimated to true after first animation
+                if (!hasAnimated) {
+                    setHasAnimated(true);
+                }
             },
             { rootMargin: '0px', threshold: 0.1 }
         );
@@ -69,7 +77,7 @@ export default function BoardComponent() {
                 if (element) observer.unobserve(element!);
             });
         };
-    }, []);
+    }, [hasAnimated]);
 
     const categories = [
         { name: "자유 게시판", path: "/free-board" },
