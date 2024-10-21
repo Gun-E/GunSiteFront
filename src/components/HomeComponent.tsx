@@ -8,7 +8,7 @@ import Link from "next/link";
 export default function HomeComponent() {
     const largePRef = useRef<HTMLParagraphElement | null>(null);
     const smallPRef = useRef<HTMLParagraphElement | null>(null);
-    const buttonRef = useRef<HTMLAnchorElement | null>(null); // 타입을 HTMLAnchorElement로 변경
+    const buttonRef = useRef<HTMLAnchorElement | null>(null);
 
     useEffect(() => {
         const elements = {
@@ -55,7 +55,7 @@ export default function HomeComponent() {
     }, []);
 
     return (
-        <div className="relative bg-my-gray flex justify-between items-center">
+        <div className="relative bg-my-gray flex justify-between items-center backdrop-blur-lg">
             <div className="absolute top-11 left-7 sm:top-16 sm:left-14 md:left-20 lg:left-36 xl:left-52">
                 <p ref={largePRef} className={`${styles.hidden} text-lg sm:text-2xl md:text-3xl font-bold mb-3`}>
                     강건의 <br />개발 사이트 입니다.
@@ -65,7 +65,7 @@ export default function HomeComponent() {
                     현재 페이지 개발 중 입니다 !!
                 </p>
                 <Link
-                    ref={buttonRef} // ref가 HTMLAnchorElement 타입으로 맞춰짐
+                    ref={buttonRef}
                     href="https://github.com/Gun-E/GunSiteFront"
                     className={`${styles.hidden} px-4 py-1 bg-brown text-white font-semibold rounded-full shadow-md duration-300`}>
                     코드
