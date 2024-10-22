@@ -8,7 +8,7 @@ export default function BoardComponent() {
     const largePRef = useRef<HTMLParagraphElement | null>(null);
     const smallPRef = useRef<HTMLParagraphElement | null>(null);
     const borderItemsRef = useRef<(HTMLDivElement | null)[]>([]);
-    const [hasAnimated, setHasAnimated] = useState(false); // State to track if items have animated
+    const [hasAnimated, setHasAnimated] = useState(false);
 
     useEffect(() => {
         const elements = {

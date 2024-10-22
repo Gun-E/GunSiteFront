@@ -1,28 +1,73 @@
 .headerNavbar {
     position: fixed;
-    background-color: rgba(255, 255, 255, 1);
+    background-color: rgba(255, 255, 255, 0);
     z-index: 999;
+    height: 56px;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    padding: 0 40px;
+}
+.menuWrap {
+    max-width: 1440px;
     width: 100%;
-    transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    height: 100%;
+    position: relative;
 }
-.headerNavbar.scrolled {
-    background-color: rgba(255, 255, 255, 0.7);
+.menuLogo {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    color: black;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
 }
-.headerNavbar:hover {
-    background-color: white;
-    transition: background-color 0.2s ease, transform 0.2s ease;
+.menuList {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    display: none;
+    gap: 24px;
+    padding: 6px 9px;
+    font-size: 14px;
+    line-height: 36px;
+    background-color: hsla(0, 0%, 100%, .6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 50px;
+}
+.menuItem {
+    width: 120px;
+    text-align: center;
+    color: #75777d;
+    font-weight: 600;
+}
+.menuCurrent{
+    color: rgb(3 105 161);
+}
+.menuItem:hover {
+    color: rgb(3 105 161);
+}
+.menuToggle {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
 }
 
-.menuContainer {
-    width: 100%;
-    padding: 0.75rem 2.5rem;
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+@media (min-width: 768px) {
+    .menuList {
+        display: flex;
+    }
+    .menuToggle{
+        display: none;
+    }
 }
 
 .menuButton {
@@ -44,6 +89,7 @@
     opacity: 1;
     pointer-events: auto;
 }
+
 .menuCloseButton {
     width: 100%;
     padding: 16px 2.5rem;
