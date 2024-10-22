@@ -48,7 +48,7 @@ export default function Home() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8">
                     {categories.map((category, index) => (
                         <div key={index}
-                             className="flex items-center rounded-3xl bg-gradient-to-l from-neutral-50 from-5% via-white via-60% to-sky-50 to-95%% transition-shadow duration-300 p-4 sm:p-6 overflow-hidden">
+                             className="flex items-center rounded-3xl bg-gradient-to-l from-slate-50 from-5% via-white via-60% to-sky-50 to-95%% transition-shadow duration-300 p-4 sm:p-6 overflow-hidden">
                             <div className="my-blue">{category.icon}</div>
                             <div className="ml-5 flex-1">
                                 <p className="text-lg sm:text-2xl font-bold text-gray-800">{category.name}</p>
