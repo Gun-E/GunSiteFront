@@ -11,12 +11,12 @@ const Footer = () => {
         <footer className="bg-white text-gray-500 py-6 px-11">
             <div className="container mx-auto flex justify-between">
                 <div className="flex items-center">
-                    <Link href="/" className="flex items-center text-xl">
-                        <span className="text-2xl font-bold">GunSite</span>
-                        <FaCode className="ml-2 text-sky-700" />
+                    <Link href="/" className="flex items-center logo text-2xl">
+                        GunSite
+                        <FaCode className="ml-2 logoBrand" />
                     </Link>
                 </div>
-                <div className="flex space-x-4">
+                <div className="flex items-center space-x-4">
                     <Link href="https://github.com/Gun-E" target="_blank" className="text-gray-500 hover:text-gray-700">
                         <FaGithub size={24} />
                     </Link>
