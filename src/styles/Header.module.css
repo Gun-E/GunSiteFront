@@ -48,10 +48,10 @@
     font-weight: 600;
 }
 .menuCurrent{
-    color: rgb(3 105 161);
+    color: rgb(17, 133, 197);
 }
 .menuItem:hover {
-    color: rgb(3 105 161);
+    color: rgb(17, 133, 197);
 }
 .menuToggle {
     display: flex;

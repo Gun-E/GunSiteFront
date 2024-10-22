@@ -199,7 +199,7 @@ export default function Home() {
                     <button
                         type="submit"
                         disabled={loading}
-                        className={`w-full py-2 px-4 rounded-xl text-white transition-colors duration-300 ${loading ? 'bg-gray-400' : 'bg-blue-500 hover:bg-blue-600'} flex justify-center items-center`}
+                        className={`w-full py-2 px-4 rounded-xl text-white transition-colors duration-300 ${loading ? 'bg-gray-400' : 'bg-my-blue'} flex justify-center items-center`}
                     >
                         {loading ? (
                             <div className="loader"></div>

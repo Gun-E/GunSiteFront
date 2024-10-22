@@ -55,7 +55,7 @@ export default function HomeComponent() {
     }, []);
 
     return (
-        <div className="relative bg-my-gray flex justify-between items-center backdrop-blur-lg">
+        <div className="relative bg-my-gray flex justify-between items-center">
             <div className="absolute top-11 left-7 sm:top-16 sm:left-14 md:left-20 lg:left-36 xl:left-52">
                 <p ref={largePRef} className={`${styles.hidden} text-lg sm:text-2xl md:text-3xl font-bold mb-3`}>
                     강건의 <br />개발 사이트 입니다.

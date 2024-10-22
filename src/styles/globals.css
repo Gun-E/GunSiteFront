@@ -19,6 +19,9 @@ body {
   font-family: 'Gowun Dodum', sans-serif;
   font-weight: 700;
 }
+.logoBrand{
+  color: rgb(17, 133, 197);
+}
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -45,7 +48,7 @@ body {
 }
 .loader {
   border: 3px solid #f3f3f3;
-  border-top: 3px solid #3498db;
+  border-top: 3px solid rgb(17, 133, 197);
   border-radius: 50%;
   width: 20px;
   height: 20px;
@@ -72,7 +75,7 @@ body {
   }
 }
 .bg-brown{
-  background-color: rgb(205, 190, 164);
+  background-color: rgb(213, 198, 175);
 }
 .bg-brown:hover{
   background-color: rgb(188, 179, 154);
@@ -82,4 +85,10 @@ body {
 }
 .my-blue{
   color: rgb(0, 168, 222);
+}
+.bg-my-blue{
+  background-color: rgb(14 165 233);
+}
+.bg-my-blue:hover{
+  background-color: rgb(11, 147, 218);
 }

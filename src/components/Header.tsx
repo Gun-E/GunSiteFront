@@ -25,7 +25,7 @@ const Header = () => {
             <div className={styles.menuWrap}>
                 <Link href="/" className={`${styles.menuLogo} logo`}>
                     GunSite
-                    <FaCode className="ml-2 text-sky-700" aria-hidden="true"/>
+                    <FaCode className="ml-2 logoBrand" aria-hidden="true"/>
                 </Link>
 
                 <div className={styles.menuList}>
@@ -55,14 +55,14 @@ const Header = () => {
                     {isLoggedIn ? (
                         <button
                             onClick={logout}
-                            className="w-20 text-center rounded-full bg-sky-700 text-white hover:bg-sky-600 font-semibold"
+                            className="w-20 text-center rounded-full bg-my-blue text-white font-semibold duration-300"
                             aria-label="로그아웃"
                         >
                             로그아웃
                         </button>
                     ) : (
                         <Link href="/login"
-                              className={`w-20 text-center rounded-full bg-sky-700 text-white hover:bg-sky-600 font-semibold ${pathname === '/login' ? 'text-sky-700' : ''}`}
+                              className={`w-20 text-center rounded-full bg-my-blue text-white font-semibold duration-300 ${pathname === '/login' ? 'text-sky-700' : ''}`}
                               aria-label="로그인">
                             로그인
                         </Link>

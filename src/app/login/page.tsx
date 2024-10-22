@@ -85,7 +85,7 @@ export default function Home() {
                     <button
                         type="submit"
                         disabled={loading}
-                        className={`w-full py-2 px-4 rounded-xl text-white transition-colors duration-300 ${loading ? 'bg-gray-400' : 'bg-blue-500 hover:bg-blue-600'} flex justify-center items-center`}
+                        className={`w-full py-2 px-4 rounded-xl text-white transition-colors duration-300 ${loading ? 'bg-gray-400' : 'bg-my-blue'} flex justify-center items-center`}
                     >
                         {loading ? (
                             <div className="loader"></div>
@@ -97,7 +97,7 @@ export default function Home() {
                 <div className="mt-12">
                     <a
                         href="/register"
-                        className="py-1 px-3 text-blue-700 hover:text-blue-400 transition-colors duration-300"
+                        className="py-1 px-3 text-sky-500 hover:text-sky-600 transition-colors duration-300"
                         aria-label="회원가입">
                         아직 회원이 아니신가요?
                     </a>
