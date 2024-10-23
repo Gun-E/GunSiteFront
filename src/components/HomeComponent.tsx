@@ -74,7 +74,7 @@ export default function HomeComponent() {
             <div className="flex flex-col"></div>
             <div className="flex flex-col md:pr-20 lg:pr-36 xl:pr-52">
                 <Image
-                    src="/images/pic.png"
+                    src="/images/image.svg"
                     alt="Landscape picture"
                     className="imageStyle"
                     style={{
