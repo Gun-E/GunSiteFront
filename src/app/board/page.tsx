@@ -11,6 +11,7 @@ import {
     FaCloud,
     FaRobot
 } from "react-icons/fa";
+import BoardComponent from "@/components/BoardComponent";
 
 export default function Home() {
     const categories = [
@@ -43,7 +44,9 @@ export default function Home() {
     ];
 
     return (
+        <><BoardComponent/>
         <main className="flex min-h-screen p-4 sm:p-8 bg-white overflow-hidden">
+
             <div className="flex flex-col w-full max-w-5xl mx-auto">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8">
                     {categories.map((category, index) => (
@@ -65,5 +68,6 @@ export default function Home() {
                 </div>
             </div>
         </main>
+        </>
     );
 }

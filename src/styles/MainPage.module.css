@@ -120,7 +120,7 @@
 .flipIn {
     animation: flipIn 2s forwards;
 }
-/* 슬라이더 컨테이너 */
+
 .sliderContainer {
     display: flex;
     overflow: hidden;
@@ -138,9 +138,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: transform 0.7s ease-in-out;
-    opacity: 0.9; /* 살짝 투명하게 */
+    transition: transform 0.5s ease-in-out;
+    opacity: 0.9;
     filter: brightness(0.9);
+    user-select: none;
+    /*border-radius: 50px;*/
 }
 
 .slideText {
@@ -149,7 +151,25 @@
     font-weight: bold;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
     text-align: center;
+    user-select: none;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    width: 300px;
 }
+
+.char {
+    position: absolute;
+    transform-origin: bottom center;
+    font-size: 2rem;
+    transform: translateY(50%) rotate(-10deg);
+    text-align: center;
+    user-select: none;
+}
+
+
 
 .indicatorContainer {
     display: flex;
