@@ -1,0 +1,63 @@
+.about_me,
+.about_me * {
+    box-sizing: border-box;
+}
+
+.about_me {
+    padding: 20px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.text_group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.child_text_group {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.child_text_group * {
+    width: 50%;
+}
+
+.rectangle_group {
+    height: auto;
+    margin: 4px auto;
+    border-radius: 50px;
+    background-color: rgb(240, 242, 244);
+}
+
+.rectangle{
+    border-radius: 50px;
+    background-color: rgb(14, 165, 233);
+    height: 100%;
+    transition: width 0.3s ease;
+}
+.java .rectangle {
+    width: 95%;
+}
+.database .rectangle {
+    width: 90%;
+}
+.js .rectangle {
+    width: 70%;
+}
+.cloud .rectangle {
+    width: 60%;
+}
+.html .rectangle {
+    width: 70%;
+}
+.python .rectangle {
+    width: 55%;
+}
+.ai .rectangle {
+    width: 40%;
+}
+
