@@ -33,7 +33,7 @@ export default function Home() {
     // 이메일 중복 검사
     const checkEmailAvailability = async (email: string): Promise<boolean> => {
         try {
-            const response = await axios.post('https://gun-site-6fce5a54a3c1.herokuapp.com/user/email-duplicate-check', { email }, {
+            const response = await axios.post('http://15.164.28.20/user/email-duplicate-check', { email }, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -98,7 +98,7 @@ export default function Home() {
         }
 
         try {
-            await axios.post('https://gun-site-6fce5a54a3c1.herokuapp.com/user/register', {
+            await axios.post('http://15.164.28.20/user/register', {
                 email,
                 password,
                 name,
