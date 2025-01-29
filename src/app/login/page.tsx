@@ -27,7 +27,7 @@ export default function Home() {
         setLoading(true);
 
         try {
-            const response = await axios.post('http://15.164.28.20:8080/login', {id, password}, {
+            const response = await axios.post('https://9unback.shop:8080/login', {id, password}, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
