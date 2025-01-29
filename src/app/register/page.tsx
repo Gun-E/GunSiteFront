@@ -33,7 +33,7 @@ export default function Home() {
     // 이메일 중복 검사
     const checkEmailAvailability = async (email: string): Promise<boolean> => {
         try {
-            const response = await axios.post('https://9unback.shop:8080/user/email-duplicate-check', { email }, {
+            const response = await axios.post('https://www.9unback.shop:8080/user/email-duplicate-check', { email }, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -98,7 +98,7 @@ export default function Home() {
         }
 
         try {
-            await axios.post('https://9unback.shop:8080/user/register', {
+            await axios.post('https://www.9unback.shop:8080/user/register', {
                 email,
                 password,
                 name,
