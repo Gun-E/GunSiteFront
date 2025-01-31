@@ -4,10 +4,10 @@
 }
 
 .about_me {
-    padding: 20px 40px;
+    padding: 106px 40px;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 50px;
 }
 
 .text_group {
@@ -15,6 +15,10 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+.text_group h1 {
+    margin-bottom: 10px;
 }
 
 .child_text_group {
@@ -35,7 +39,7 @@
 
 .rectangle{
     border-radius: 50px;
-    background-color: rgb(14, 165, 233);
+    background-color: rgb(0, 81, 255);
     height: 100%;
     transition: width 0.3s ease;
 }

@@ -188,7 +188,7 @@
 }
 
 .activeIndicator {
-    background-color: rgb(14 165 233);
+    background-color: rgb(0, 81, 255);
     transform: scale(1.3);
 }
 

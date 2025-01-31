@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, {useEffect, useRef} from 'react';
 import styles from '@/styles/MainPage.module.css';
 import Image from 'next/image';
 import Link from "next/link";
@@ -30,7 +30,7 @@ export default function HomeComponent() {
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
-                    const { isIntersecting, target } = entry;
+                    const {isIntersecting, target} = entry;
                     if (target === elements.largeP) {
                         animateElement(elements.largeP, 0, isIntersecting);
                     } else if (target === elements.smallP) {
@@ -40,7 +40,7 @@ export default function HomeComponent() {
                     }
                 });
             },
-            { rootMargin: '0px', threshold: 0.1 }
+            {rootMargin: '0px', threshold: 0.1}
         );
 
         Object.values(elements).forEach(element => {
@@ -55,34 +55,35 @@ export default function HomeComponent() {
     }, []);
 
     return (
-        <div className="relative bg-my-gray flex justify-between items-center">
-            <div className="absolute top-11 left-7 sm:top-16 sm:left-14 md:left-20 lg:left-36 xl:left-52">
-                <p ref={largePRef} className={`${styles.hidden} text-lg sm:text-2xl md:text-3xl font-bold mb-3`}>
-                    강건의 <br />개발 사이트 입니다.
-                </p>
-                <p ref={smallPRef} className={`${styles.hidden} text-xs sm:text-sm md:text-lg mb-3`}>
-                    사이트에 오신 걸 환영합니다.<br />
-                    현재 페이지 개발 중 입니다 !!
-                </p>
-                <Link
-                    ref={buttonRef}
-                    href="https://github.com/Gun-E/GunSiteFront"
-                    className={`${styles.hidden} px-4 py-1 bg-brown text-white font-semibold rounded-full shadow-md duration-300`}>
-                    코드
-                </Link>
-            </div>
-            <div className="flex flex-col"></div>
-            <div className="flex flex-col md:pr-20 lg:pr-36 xl:pr-52">
-                <Image
-                    src="/images/image.svg"
-                    alt="Landscape picture"
-                    className="imageStyle"
-                    style={{
-                        objectFit: 'cover'
-                    }}
-                    width={400}
-                    height={400}
-                />
+        <div className="bg-blue-50">
+            <div
+                className="relative flex justify-between items-center px-10 max-w-[1140px] mx-auto h-screen">
+
+                <div className="absolute inset-0 z-10 w-full flex items-center justify-end pr-9">
+                    <Image
+                        src="/images/image.svg"
+                        alt="Landscape picture"
+                        className="w-2/5 object-contain opacity-70"
+                        width={1600}
+                        height={900}
+                    />
+                </div>
+                <div
+                    className="flex flex-col space-y-3 sm:space-y-5 md:space-y-6 lg:space-y-8 xl:space-y-10 relative z-10">
+                    <h1 ref={largePRef} className={`${styles.hidden} text-lg sm:text-2xl md:text-3xl font-bold`}>
+                        강건의 <br/>개발 사이트 입니다.
+                    </h1>
+                    <p ref={smallPRef} className={`${styles.hidden} text-xs sm:text-sm md:text-lg`}>
+                        사이트에 오신 걸 환영합니다.<br/>
+                        현재 페이지 개발 중 입니다 !!
+                    </p>
+                    <Link
+                        ref={buttonRef}
+                        href="https://github.com/Gun-E/GunSiteFront"
+                        className={`${styles.hidden} flex items-center justify-center w-16 px-4 py-1 bg-button text-white font-semibold rounded-full shadow-md duration-300`}>
+                        코드
+                    </Link>
+                </div>
             </div>
         </div>
     );

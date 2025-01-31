@@ -20,9 +20,7 @@ export default function RootLayout({
         <body>
         <AuthProvider>
             <Header/>
-            <div className="children">
-                {children}
-            </div>
+            {children}
             <Footer/>
         </AuthProvider>
         </body>
