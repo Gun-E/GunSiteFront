@@ -1,6 +1,6 @@
 "use client";
 import Link from 'next/link';
-import {FaGithub, FaTwitter, FaInstagram, FaCode} from 'react-icons/fa'; // Import FaInstagram
+import {FaGithub, FaInstagram} from 'react-icons/fa';
 import Image from "next/image";
 import {useState} from "react";
 
@@ -8,7 +8,7 @@ const Footer = () => {
     const [isHovered, setIsHovered] = useState(false);
 
     return (
-        <footer className="bg-white text-gray-500 py-6 px-11">
+        <footer className="bg-white text-gray-500 py-8 px-10 max-w-[1140px] mx-auto">
             <div className="flex items-center space-x-4">
                 <Link href="https://github.com/Gun-E" target="_blank" className="text-gray-500 hover:text-gray-700">
                     <FaGithub size={24}/>
@@ -34,7 +34,7 @@ const Footer = () => {
                 </Link>
             </div>
             
-            <div className="container mx-auto flex mt-3">
+            <div className="container flex mt-3">
                 <p>&copy; 2024 GunSite. All rights reserved.</p>
             </div>
         </footer>

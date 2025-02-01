@@ -1,59 +1,140 @@
-import Link from 'next/link';
-import {
-    FaRegClipboard,
-    FaJava,
-    FaHtml5,
-    FaPython,
-    FaNodeJs,
-    FaDatabase,
-    FaReact,
-    FaRegChartBar,
-    FaCloud,
-    FaRobot
-} from "react-icons/fa";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import BoardComponent from "@/components/BoardComponent";
-import Viewpager from "@/components/Viewpager";
+import Link from "next/link";
+import { BiChevronRight } from "react-icons/bi";
+import axios from "axios";
+
+interface Board {
+    boardId: number;
+    title: string;
+    username: string;
+    date: string;
+}
 
 export default function Home() {
-    const categories = [
-        {
-            name: "자유 게시판",
-            description: "자유롭게 의견을 나누는 공간입니다.",
-            icon: <FaRegClipboard className="text-6xl sm:text-8xl"/>,
-            path: "/free-board"
-        },
-        {
-            name: "코딩 게시판",
-            description: "웹 개발 및 CS 지식을 공유합니다.",
-            icon: <FaJava className="text-6xl sm:text-8xl"/>,
-            path: "/java-spring"
+    const [codeBoards, setCodeBoards] = useState<Board[]>([]);
+    const [freeBoards, setFreeBoards] = useState<Board[]>([]);
+
+    useEffect(() => {
+        const fetchBoards = async () => {
+            try {
+                const codeResponse = await axios.get("https://www.9unback.shop/boards?category=code&limit=5");
+                setCodeBoards(codeResponse.data);
+
+                const freeResponse = await axios.get("https://www.9unback.shop/boards?category=free&limit=5");
+                setFreeBoards(freeResponse.data);
+            } catch (error) {
+                console.error("게시물 데이터를 가져오는 데 실패했습니다.", error);
+            }
+        };
+
+        fetchBoards();
+    }, []);
+
+    const formatTime = (dateString: string) => {
+        const now = new Date();
+        const targetDate = new Date(dateString);
+
+        const targetDateKST = new Date(targetDate.getTime() + 9 * 60 * 60 * 1000);
+
+        const diffInSeconds = Math.floor((now.getTime() - targetDateKST.getTime()) / 1000);
+
+        if (diffInSeconds < 3600) {
+            const minutes = Math.floor(diffInSeconds / 60);
+            return `${minutes}분 전`;
         }
-    ];
+
+        if (diffInSeconds < 86400) {
+            const hours = Math.floor(diffInSeconds / 3600);
+            return `${hours}시간 전`;
+        }
+
+        const yesterday = new Date(now);
+        yesterday.setDate(now.getDate() - 1);
+        if (targetDateKST.toDateString() === yesterday.toDateString()) {
+            return "어제";
+        }
+
+        let formattedDate = targetDateKST.toLocaleString("ko-KR", {
+            month: "2-digit",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: false
+        });
+
+        if (targetDateKST.getFullYear() !== now.getFullYear()) {
+            formattedDate = targetDateKST.toLocaleString("ko-KR", {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: false
+            });
+        }
+
+        return formattedDate.replace(/\//g, ".");
+    };
 
     return (
-        <><BoardComponent/>
-            <main className="flex min-h-screen px-10 py-14 bg-white overflow-hidden">
-                <div className="flex flex-col w-full max-w-5xl mx-auto">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8">
-                        {categories.map((category, index) => (
-                            <div key={index}
-                                 className="flex items-center rounded-3xl bg-gradient-to-l from-slate-50 from-5% via-white via-60% to-sky-50 to-95%% transition-shadow duration-300 p-4 sm:p-6 overflow-hidden">
-                                <div className="my-blue w-20 h-20 flex items-center justify-center">{category.icon}</div>
-                                <div className="ml-5 flex-1">
-                                    <p className="text-lg sm:text-2xl font-bold text-gray-800">{category.name}</p>
-                                    <p className="text-sm sm:text-md text-gray-600 mt-1">{category.description}</p>
-                                    <div className="mt-3.5">
-                                        <Link href={category.path}
-                                              className="px-4 py-1 bg-button text-white font-semibold rounded-full  duration-300">
-                                            이동
-                                        </Link>
-                                    </div>
+        <>
+            <BoardComponent />
+            <div className="flex flex-col gap-20 mb-20 px-10 max-w-[1140px] mx-auto">
+                {/* 코딩 게시판 */}
+                <div className="flex flex-col">
+                    <Link className="flex items-center" href="/board/code">
+                        <h1 className="text-3xl font-bold mr-2.5">코딩 게시판</h1>
+                        <BiChevronRight className="text-3xl" />
+                    </Link>
+                    <div className="mt-8">
+                        {codeBoards.map((board) => (
+                            <Link
+                                key={board.boardId}
+                                href={`/board/${board.boardId}`}
+                                className="py-3.5 flex flex-col gap-2.5 items-start"
+                            >
+                                <div className="w-full flex flex-col gap-1">
+                                    <h3 className="text-lg font-semibold">{board.title}</h3>
+                                    <p className="text-sm font-normal">
+                                        <span className="my-blue mr-2">{board.username}</span>
+                                        {formatTime(board.date)}
+                                    </p>
                                 </div>
-                            </div>
+                            </Link>
                         ))}
                     </div>
                 </div>
-            </main>
+
+                <div className="h-0.5 w-full bg-gray-100"></div>
+
+                {/* 자유 게시판 */}
+                <div className="flex flex-col">
+                    <Link className="flex items-center" href="/board/free">
+                        <h1 className="text-3xl font-bold mr-2.5">자유 게시판</h1>
+                        <BiChevronRight className="text-3xl" />
+                    </Link>
+                    <div className="mt-8">
+                        {freeBoards.map((board) => (
+                            <Link
+                                key={board.boardId}
+                                href={`/board/${board.boardId}`}
+                                className="py-3.5 flex flex-col gap-2.5 items-start"
+                            >
+                                <div className="w-full flex flex-col gap-2">
+                                    <h3 className="text-lg font-semibold">{board.title}</h3>
+                                    <p className="text-sm font-normal">
+                                        <span className="my-blue mr-2">{board.username}</span>
+                                        {formatTime(board.date)}
+                                    </p>
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
+                </div>
+            </div>
         </>
     );
 }

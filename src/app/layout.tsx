@@ -20,7 +20,10 @@ export default function RootLayout({
         <body>
         <AuthProvider>
             <Header/>
+            <div className="box-border">
             {children}
+
+            </div>
             <Footer/>
         </AuthProvider>
         </body>
