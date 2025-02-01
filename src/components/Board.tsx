@@ -46,6 +46,7 @@ export default function Board() {
 
         fetchBoards();
     }, [currentPage, isCodeBoard]);
+
     const formatTime = (dateString: string) => {
         const now = new Date();
         const targetDate = new Date(dateString);

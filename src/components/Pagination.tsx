@@ -1,8 +1,10 @@
+"use client"
+
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from '../styles/Pagination.module.css';
-import { BiChevronRight ,BiChevronLeft } from "react-icons/bi";
+import { BiChevronRight ,BiChevronLeft, BiDotsHorizontalRounded } from "react-icons/bi";
 
 interface PaginationProps {
     currentPage: number;
@@ -44,7 +46,7 @@ export default function Pagination  ({currentPage, totalPages, category}: Pagina
     const Ellipsis = () => {
         return (
             <div className={styles.more}>
-                <Image src="/images/more-horizontal.svg" alt="more" width={24} height={24}/>
+                <BiDotsHorizontalRounded className="text-3xl"/>
             </div>
         );
     };
