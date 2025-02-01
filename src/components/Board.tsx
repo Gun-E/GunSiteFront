@@ -46,7 +46,51 @@ export default function Board() {
 
         fetchBoards();
     }, [currentPage, isCodeBoard]);
+    const formatTime = (dateString: string) => {
+        const now = new Date();
+        const targetDate = new Date(dateString);
 
+        const targetDateKST = new Date(targetDate.getTime() + 9 * 60 * 60 * 1000);
+
+        const diffInSeconds = Math.floor((now.getTime() - targetDateKST.getTime()) / 1000);
+
+        if (diffInSeconds < 3600) {
+            const minutes = Math.floor(diffInSeconds / 60);
+            return `${minutes}분 전`;
+        }
+
+        if (diffInSeconds < 86400) {
+            const hours = Math.floor(diffInSeconds / 3600);
+            return `${hours}시간 전`;
+        }
+
+        const yesterday = new Date(now);
+        yesterday.setDate(now.getDate() - 1);
+        if (targetDateKST.toDateString() === yesterday.toDateString()) {
+            return "어제";
+        }
+
+        let formattedDate = targetDateKST.toLocaleString("ko-KR", {
+            month: "2-digit",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: false
+        });
+
+        if (targetDateKST.getFullYear() !== now.getFullYear()) {
+            formattedDate = targetDateKST.toLocaleString("ko-KR", {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: false
+            });
+        }
+
+        return formattedDate.replace(/\//g, ".");
+    };
     return (
         <div className="flex flex-col items-start justify-start py-24 px-10 max-w-[1140px] mx-auto">
             <h1 className="text-3xl font-bold mr-2.5">{boardTitle}</h1>
@@ -62,7 +106,7 @@ export default function Board() {
                             <h3 className="text-lg font-semibold">{board.title}</h3>
                             <p className="text-sm font-normal">
                                 <span className="my-blue mr-2">{board.username}</span>
-                                {new Date(board.date).toLocaleString()}
+                                {formatTime(board.date)}
                             </p>
                         </div>
                     </Link>
