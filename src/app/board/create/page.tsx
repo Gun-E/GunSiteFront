@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
@@ -22,10 +22,13 @@ export default function Home() {
         label: "자유 게시판",
     });
     const [errorMessage, setErrorMessage] = useState<string>("");
+    const [isClient, setIsClient] = useState(false);
 
     const contentRef = useRef<HTMLTextAreaElement | null>(null);
 
     useEffect(() => {
+        setIsClient(true);
+
         if (contentRef.current) {
             contentRef.current.style.height = "auto";
             contentRef.current.style.height = `${contentRef.current.scrollHeight}px`;
@@ -143,15 +146,17 @@ export default function Home() {
             <h1 className="text-3xl font-bold mb-10">새로운 게시글 작성</h1>
 
             <div className="mb-3.5">
-                <Select
-                    value={selectedOption}
-                    onChange={handleChange}
-                    options={options}
-                    isSearchable={false}
-                    styles={customStyles}
-                    placeholder="게시판을 선택하세요"
-                    menuPortalTarget={document.body}
-                />
+                {isClient && (
+                    <Select
+                        value={selectedOption}
+                        onChange={handleChange}
+                        options={options}
+                        isSearchable={false}
+                        styles={customStyles}
+                        placeholder="게시판을 선택하세요"
+                        menuPortalTarget={document.body}
+                    />
+                )}
             </div>
 
             <input
