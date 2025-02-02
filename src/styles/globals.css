@@ -101,7 +101,28 @@ body {
 .bg-my-blue:hover{
   background-color: rgb(11, 147, 218);
 }
-
+.blue_button{
+  background: rgb(0, 81, 255);
+  color: #ffffff;
+  font-weight: 500;
+  padding: 9px 16px;
+  border-radius: 50px;
+  transition: background 0.2s ease;
+}
+.blue_button:hover{
+  background: rgb(0, 67, 204);
+}
+.gray_button{
+  color: #4E5968;
+  background: #F2F4F6;
+  font-weight: 500;
+  padding: 9px 16px;
+  border-radius: 50px;
+  transition: background 0.2s ease;
+}
+.gray_button:hover{
+  background: #D1D6DB;
+}
 h1{
   font-weight: 600;
   font-size: 28px;

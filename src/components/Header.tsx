@@ -1,7 +1,8 @@
 "use client";
 
 import styles from "@/styles/Header.module.css";
-import {FaBars, FaCode} from "react-icons/fa";
+import {FaCode} from "react-icons/fa";
+import { BiMenu } from "react-icons/bi";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
 import {useState} from "react";
@@ -43,7 +44,7 @@ export default function Header() {
             </div>
 
             <button onClick={toggleMenu} aria-label="메뉴 토글" className={styles.menuToggle}>
-                <FaBars className="text-2xl"/>
+                <BiMenu className="text-3xl"/>
             </button>
 
             <ToggleMenu isOpen={isMenuOpen} isLoggedIn={isLoggedIn} onClose={toggleMenu} handleLogout={handleLogout}

@@ -1,0 +1,33 @@
+.title {
+    user-select: text;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 130%;
+    color: #000;
+}
+
+.content {
+    user-select: text;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 150%;
+    color: #000;
+    margin-bottom: 72px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.more {
+    cursor: pointer;
+    font-size: 24px;
+    color: rgb(156, 163, 175);
+}
+.category{
+    background: rgb(0, 81, 255);
+    color: white;
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 50px;
+    padding: 3px 11px;
+    width: fit-content;
+}

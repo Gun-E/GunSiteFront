@@ -32,7 +32,14 @@ export default function Home() {
                     'Content-Type': 'application/json'
                 }
             });
-            const {token} = response.data;
+
+            const token = response.data;
+
+            if (!token) {
+                setError('토큰이 누락되었습니다. 로그인에 실패했습니다.');
+                return;
+            }
+
             login(token);
             router.push('/');
         } catch (err) {
@@ -50,7 +57,8 @@ export default function Home() {
         <div className="customContainer">
             <div className="customFormContainer">
                 <h1 className="text-3xl mb-4 text-center"><span className="logo">GunSite</span> 계정</h1>
-                <h3 className="text-sm text-gray-700 mb-16 text-center"><span className="logo">GunSite</span> 계정으로 로그인</h3>
+                <h3 className="text-sm text-gray-700 mb-16 text-center"><span className="logo">GunSite</span> 계정으로 로그인
+                </h3>
                 {error && <p className="text-red-500 mb-4">{error}</p>}
                 <form className="w-full" onSubmit={handleSubmit}>
                     <div className="mb-5">

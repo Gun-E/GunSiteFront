@@ -2,7 +2,7 @@
 
 import React, {useEffect} from "react";
 import styles from "@/styles/Header.module.css";
-import {FaTimes} from "react-icons/fa";
+import { BiX } from "react-icons/bi";
 import Link from "next/link";
 import ReactDOM from "react-dom";
 
@@ -43,7 +43,7 @@ const ToggleMenu = ({isOpen, isLoggedIn, onClose, handleLogout, pathname}: Toggl
         <div className={`${styles.modalOverlay} ${isOpen ? styles.modalOpen : styles.modalClose}`}>
             <div className={styles.menuCloseButton}>
                 <button onClick={onClose} className={styles.menuToggle}>
-                    <FaTimes className="text-2xl"/>
+                    <BiX className="text-3xl"/>
                 </button>
             </div>
             <div className={styles.menuToggleList}>

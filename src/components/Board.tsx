@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { usePathname } from "next/navigation";
 import axios from "axios";
 import Pagination from "@/components/Pagination";
+import { useAuth } from "@/app/context/AuthContext";
 
 interface Board {
     boardId: number;
@@ -15,6 +16,7 @@ interface Board {
 }
 
 export default function Board() {
+    const { isLoggedIn } = useAuth();
     const pathname = usePathname();
     const isCodeBoard = pathname === "/board/code";
     const boardTitle = isCodeBoard ? "코딩 게시판" : "자유 게시판";
@@ -92,6 +94,7 @@ export default function Board() {
 
         return formattedDate.replace(/\//g, ".");
     };
+
     return (
         <div className="flex flex-col items-start justify-start py-24 px-10 max-w-[1140px] mx-auto">
             <h1 className="text-3xl font-bold mr-2.5">{boardTitle}</h1>
@@ -116,6 +119,15 @@ export default function Board() {
 
             {Number.isInteger(currentPage) && (
                 <Pagination currentPage={currentPage} totalPages={totalPages} category={category} />
+            )}
+
+            {isLoggedIn && (
+                <Link
+                    href="/board/create"
+                    className="fixed bottom-8 right-8 bg-blue-600 text-white rounded-full py-3 px-5 shadow-lg"
+                >
+                    <span className="text-lg">글쓰기</span>
+                </Link>
             )}
         </div>
     );
