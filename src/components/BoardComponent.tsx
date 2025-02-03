@@ -17,16 +17,11 @@ export default function BoardComponent() {
     }
 
     const categories: Category[] = [
-        { name: "자유 게시판", path: "/free-board", bgImage: '/images/code.svg' },
-        { name: "JAVA / SPRING", path: "/java-spring", bgImage: '/images/spring.svg' },
-        { name: "HTML / CSS", path: "/html-css", bgImage: '/images/html.svg' },
-        { name: "PYTHON / FAST API", path: "/python-fastapi", bgImage: '/images/py.svg' },
-        { name: "JAVASCRIPT / NODE.JS", path: "/javascript-nodejs", bgImage: '/images/js.svg' },
-        { name: "DATABASE / SQL", path: "/database-sql", bgImage: '/images/sql.svg' },
-        { name: "REACT / NEXT.JS", path: "/react-next", bgImage: '/images/react.svg' },
-        { name: "DATA ANALYSIS", path: "/data-analysis", bgImage: '/images/pycham.svg' },
-        { name: "CLOUD", path: "/cloud", bgImage: '/images/aws.svg' },
-        { name: "AI", path: "/ai", bgImage: '/images/gpt.svg' },
+        { name: "JAVA / SPRING", path: "https://start.spring.io/", bgImage: '/images/spring.svg' },
+        { name: "AWS", path: "https://aws.amazon.com/", bgImage: '/images/aws.svg' },
+        { name: "ChatGPT", path: "https://chatgpt.com/", bgImage: '/images/gpt.svg' },
+        { name: "Vercel", path: "https://Vercel.com/", bgImage: '/images/vercel.svg' },
+        { name: "REACT", path: "https://ko.legacy.reactjs.org/", bgImage: '/images/react.svg' },
     ];
 
     const total = categories.length;
@@ -159,7 +154,13 @@ export default function BoardComponent() {
                 onMouseLeave={handleMouseUp}
             >
                 {categories.map((category, idx) => (
-                    <Link href={category.path} passHref draggable="false" key={idx}>
+                    <a
+                        href={category.path}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        key={idx}
+                        draggable="false"
+                    >
                         <div
                             className={`${styles.slideItem} ${index === idx ? styles.active : ''}`}
                             style={{
@@ -170,7 +171,7 @@ export default function BoardComponent() {
                             }}
                         >
                         </div>
-                    </Link>
+                    </a>
                 ))}
             </div>
 
