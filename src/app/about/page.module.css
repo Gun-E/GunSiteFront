@@ -5,9 +5,12 @@
 
 .about_me {
     padding: 106px 40px;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1140px;
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 40px;
 }
 
 .text_group {
@@ -50,13 +53,13 @@
     width: 90%;
 }
 .js .rectangle {
-    width: 70%;
+    width: 65%;
 }
 .cloud .rectangle {
-    width: 60%;
+    width: 75%;
 }
 .html .rectangle {
-    width: 70%;
+    width: 85%;
 }
 .python .rectangle {
     width: 55%;
