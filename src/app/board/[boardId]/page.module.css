@@ -21,6 +21,7 @@
     cursor: pointer;
     font-size: 24px;
     color: rgb(156, 163, 175);
+    position: relative;
 }
 .category{
     background: rgb(0, 81, 255);
