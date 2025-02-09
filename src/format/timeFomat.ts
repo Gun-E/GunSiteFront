@@ -25,24 +25,9 @@ export function formatDate(dateString: string) {
         return "어제";
     }
 
-    let formattedDate = targetDateKST.toLocaleString("ko-KR", {
-        month: "numeric",
-        day: "numeric",
-        hour: "numeric",
-        minute: "2-digit",
-        hour12: false
+    return targetDateKST.toLocaleDateString("ko-KR", {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
     });
-
-    if (targetDateKST.getFullYear() !== now.getFullYear()) {
-        formattedDate = targetDateKST.toLocaleString("ko-KR", {
-            year: "numeric",
-            month: "numeric",
-            day: "numeric",
-            hour: "numeric",
-            minute: "2-digit",
-            hour12: false
-        });
-    }
-
-    return formattedDate.replace(/\//g, ".");
 }
