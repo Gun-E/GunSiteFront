@@ -2,7 +2,6 @@
 
 import React from "react";
 import Link from "next/link";
-import ReactDOM from "react-dom";
 import { useRouter } from "next/navigation";
 import styles from "../styles/MoreModal.module.css";
 
@@ -38,7 +37,7 @@ const MoreModal = ({ isOpen, onCloseAction, boardId }: MoreModalProps) => {
         }
     };
 
-    return ReactDOM.createPortal(
+    return (
         <div className={styles.modalOverlay} onClick={onCloseAction}>
             <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
                 <Link href={`/board/edit/${boardId}`} className="text-gray-500">
@@ -48,8 +47,7 @@ const MoreModal = ({ isOpen, onCloseAction, boardId }: MoreModalProps) => {
                     삭제
                 </button>
             </div>
-        </div>,
-        document.body
+        </div>
     );
 };
 

@@ -51,13 +51,16 @@ export default function Home() {
     return (
         <div className="flex flex-col gap-8 items-start justify-start py-24 px-10 max-w-[1140px] mx-auto">
             <div className="flex flex-col w-full">
-                <div className="flex justify-between w-full items-center mb-5">
+                <div className="flex justify-between w-full items-center mb-5 relative">
                     <h1 className={styles.title}>{board?.title || "제목을 불러오는 중..."}</h1>
                     {(board?.userId === userId || isAdmin)&& (
                         <BiDotsVerticalRounded
                             className={styles.more}
                             onClick={handleModal}
                         />
+                    )}
+                    {isModalOpen && (
+                        <MoreModal isOpen={isModalOpen} onCloseAction={handleModal} boardId={boardId ? Number(boardId) : 0} />
                     )}
                 </div>
                 <div className="flex justify-between w-full items-center">
@@ -81,9 +84,7 @@ export default function Home() {
                 목록
             </button>
 
-            {isModalOpen && (
-                <MoreModal isOpen={isModalOpen} onCloseAction={handleModal} boardId={boardId ? Number(boardId) : 0} />
-            )}
+
         </div>
     );
 }
