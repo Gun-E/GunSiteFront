@@ -27,11 +27,15 @@ export default function Home() {
     const contentRef = useRef<HTMLTextAreaElement | null>(null);
 
     useEffect(() => {
-        setIsClient(true);
-
         if (contentRef.current) {
-            contentRef.current.style.height = "auto";
-            contentRef.current.style.height = `${contentRef.current.scrollHeight}px`;
+            const textarea = contentRef.current;
+
+            textarea.style.height = "auto";
+            textarea.style.height = `${textarea.scrollHeight}px`;
+
+            const textLength = textarea.value.length;
+            textarea.setSelectionRange(textLength, textLength);
+            textarea.scrollTop = textarea.scrollHeight;
         }
     }, [content]);
 
