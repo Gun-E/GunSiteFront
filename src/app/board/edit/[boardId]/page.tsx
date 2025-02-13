@@ -30,11 +30,6 @@ export default function EditPost() {
     useEffect(() => {
         setIsClient(true);
 
-        if (contentRef.current) {
-            contentRef.current.style.height = "auto";
-            contentRef.current.style.height = `${contentRef.current.scrollHeight}px`;
-        }
-
         if (boardId) {
             fetch(`https://www.9unback.shop/boards/${boardId}`)
                 .then((response) => response.json())
@@ -45,12 +40,19 @@ export default function EditPost() {
                         value: data.category,
                         label: data.category === "code" ? "코딩 게시판" : "자유 게시판",
                     });
+
+                    setTimeout(() => {
+                        if (contentRef.current) {
+                            contentRef.current.style.height = "auto";
+                            contentRef.current.style.height = `${contentRef.current.scrollHeight}px`;
+                        }
+                    }, 0);
                 })
                 .catch(() => {
                     setErrorMessage("게시글 정보를 불러오는 데 실패했습니다.");
                 });
         }
-    }, [boardId]); // content 상태는 의존성 배열에서 제거
+    }, [boardId]);
 
     const handleSave = async () => {
         if (!title || !content) {
