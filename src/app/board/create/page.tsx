@@ -22,7 +22,6 @@ export default function Home() {
         label: "자유 게시판",
     });
     const [errorMessage, setErrorMessage] = useState<string>("");
-    const [isClient, setIsClient] = useState(false);
 
     const contentRef = useRef<HTMLTextAreaElement | null>(null);
 
@@ -30,12 +29,19 @@ export default function Home() {
         if (contentRef.current) {
             const textarea = contentRef.current;
 
+            // 현재 커서 위치와 스크롤 위치 저장
+            const cursorPosition = textarea.selectionStart;
+            const scrollPosition = textarea.scrollTop;
+
+            // 높이 조절
             textarea.style.height = "auto";
             textarea.style.height = `${textarea.scrollHeight}px`;
 
-            const textLength = textarea.value.length;
-            textarea.setSelectionRange(textLength, textLength);
-            textarea.scrollTop = textarea.scrollHeight;
+            // 커서 위치 복원
+            textarea.setSelectionRange(cursorPosition, cursorPosition);
+
+            // 스크롤 위치를 3/4 지점으로 조정
+            textarea.scrollTop = textarea.scrollHeight * 0.75;
         }
     }, [content]);
 
@@ -157,7 +163,6 @@ export default function Home() {
             <h1 className="text-3xl font-bold mb-10">새로운 게시글 작성</h1>
 
             <div className="mb-3.5">
-                {isClient && (
                     <Select
                         value={selectedOption}
                         onChange={handleChange}
@@ -167,7 +172,6 @@ export default function Home() {
                         placeholder="게시판을 선택하세요"
                         menuPortalTarget={document.body}
                     />
-                )}
             </div>
 
             <input
