@@ -170,7 +170,7 @@ export default function Home() {
                         isSearchable={false}
                         styles={customStyles}
                         placeholder="게시판을 선택하세요"
-                        menuPortalTarget={document.body}
+                        menuPortalTarget={typeof window !== "undefined" ? document.body : null}
                     />
             </div>
 
