@@ -51,7 +51,7 @@ export default function Home() {
             };
 
             const response = await axios.post(
-                "https://www.9unback.shop/boards",
+                "/api/boards",
                 boardData,
                 {
                     headers: {

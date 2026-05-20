@@ -20,10 +20,10 @@ export default function Home() {
     useEffect(() => {
         const fetchBoards = async () => {
             try {
-                const codeResponse = await axios.get("https://www.9unback.shop/boards?category=code&limit=5");
+                const codeResponse = await axios.get("/api/boards?category=code&limit=5");
                 setCodeBoards(codeResponse.data);
 
-                const freeResponse = await axios.get("https://www.9unback.shop/boards?category=free&limit=5");
+                const freeResponse = await axios.get("/api/boards?category=free&limit=5");
                 setFreeBoards(freeResponse.data);
             } catch (error) {
                 console.error("게시물 데이터를 가져오는 데 실패했습니다.", error);

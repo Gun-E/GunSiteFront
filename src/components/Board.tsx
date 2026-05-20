@@ -37,7 +37,7 @@ export default function Board() {
         const fetchBoards = async () => {
             try {
                 const response = await axios.get(
-                    `https://www.9unback.shop/boards/list?category=${isCodeBoard ? "code" : "free"}&page=${currentPage - 1}`
+                    `/api/boards/list?category=${isCodeBoard ? "code" : "free"}&page=${currentPage - 1}`
                 );
                 setBoards(response.data.boards);
                 setTotalPages(response.data.totalPages);

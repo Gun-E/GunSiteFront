@@ -28,7 +28,7 @@ export default function Home() {
         if (!boardId) return;
 
         axios
-            .get<Board>(`https://www.9unback.shop/boards/${boardId}`)
+            .get<Board>(`/api/boards/${boardId}`)
             .then((response) => {
                 setBoard(response.data);
             })
