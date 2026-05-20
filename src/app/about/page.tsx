@@ -80,11 +80,11 @@ export default function Home() {
             <div className={styles.text_group}>
                 <h1>Licence</h1>
                 <div className={styles.child_text_group}>
-                    <p>2023.06</p>
+                    <p>2023.06.09</p>
                     <p>정보처리기사</p>
                 </div>
                 <div className={styles.child_text_group}>
-                    <p>2024.09</p>
+                    <p>2024.09.20</p>
                     <p>SQL Developer</p>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 .title {
-    user-select: text;
+    user-select: none;
     font-size: 32px;
     font-weight: 600;
     line-height: 130%;
@@ -21,6 +21,7 @@
     cursor: pointer;
     font-size: 24px;
     color: rgb(156, 163, 175);
+    position: relative;
 }
 .category{
     background: rgb(0, 81, 255);

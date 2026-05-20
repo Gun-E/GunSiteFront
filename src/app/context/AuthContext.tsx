@@ -9,10 +9,12 @@ interface AuthContextType {
     userId: number | null;
     login: (token: string) => void;
     logout: () => void;
+    isAdmin: boolean;
 }
 
 interface DecodedToken {
     userId: number;
+    roles: string;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -20,6 +22,8 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userId, setUserId] = useState<number | null>(null);
+    const [isAdmin, setIsAdmin] = useState(false);
+
     const router = useRouter();
 
     useEffect(() => {
@@ -28,6 +32,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             try {
                 const decodedToken: DecodedToken = jwtDecode(token);
                 setUserId(decodedToken.userId);
+                setIsAdmin(decodedToken.roles==="ROLE_ADMIN");
                 setIsLoggedIn(true);
             } catch (error) {
                 console.error("Invalid token", error);
@@ -41,6 +46,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         try {
             const decodedToken: DecodedToken = jwtDecode(token);
             setUserId(decodedToken.userId);
+            setIsAdmin(decodedToken.roles==="ROLE_ADMIN");
             setIsLoggedIn(true);
         } catch (error) {
             console.error("Invalid token", error);
@@ -53,11 +59,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         localStorage.removeItem('token');
         setIsLoggedIn(false);
         setUserId(null);
+        setIsAdmin(false);
         router.push('/login');
     };
 
     return (
-        <AuthContext.Provider value={{ isLoggedIn, userId, login, logout }}>
+        <AuthContext.Provider value={{ isLoggedIn, userId, login, logout, isAdmin }}>
             {children}
         </AuthContext.Provider>
     );

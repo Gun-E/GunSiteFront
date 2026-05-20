@@ -1,8 +1,7 @@
-"use client"
+"use client";
 
 import { useState, useEffect, useRef } from "react";
-import { useRouter } from "next/navigation";
-import axios from "axios";
+import { usePathname, useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import Select, { SingleValue, StylesConfig } from "react-select";
 import { useAuth } from "@/app/context/AuthContext";
@@ -12,83 +11,90 @@ interface OptionType {
     label: string;
 }
 
-export default function Home() {
+export default function EditPost() {
     const router = useRouter();
+    const { userId } = useAuth();
+    const pathname = usePathname();
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
-    const { userId } = useAuth();
     const [selectedOption, setSelectedOption] = useState<OptionType | null>({
         value: "free",
         label: "자유 게시판",
     });
     const [errorMessage, setErrorMessage] = useState<string>("");
-
+    const [isClient, setIsClient] = useState(false);
     const contentRef = useRef<HTMLTextAreaElement | null>(null);
 
+    const boardId = pathname.match(/\d+$/)?.[0];
+
     useEffect(() => {
-        if (contentRef.current) {
-            const textarea = contentRef.current;
+        setIsClient(true);
 
-            // 현재 커서 위치와 스크롤 위치 저장
-            const cursorPosition = textarea.selectionStart;
-            const scrollPosition = textarea.scrollTop;
+        if (boardId) {
+            fetch(`https://www.9unback.shop/boards/${boardId}`)
+                .then((response) => response.json())
+                .then((data) => {
+                    setTitle(data.title);
+                    setContent(data.content);
+                    setSelectedOption({
+                        value: data.category,
+                        label: data.category === "code" ? "코딩 게시판" : "자유 게시판",
+                    });
 
-            // 높이 조절
-            textarea.style.height = "auto";
-            textarea.style.height = `${textarea.scrollHeight}px`;
+                    setTimeout(() => {
+                        if (contentRef.current) {
+                            const textarea = contentRef.current;
 
-            // 커서 위치 복원
-            textarea.setSelectionRange(cursorPosition, cursorPosition);
+                            textarea.style.height = "auto";
+                            textarea.style.height = `${textarea.scrollHeight}px`;
 
-            // 스크롤 위치를 3/4 지점으로 조정
-            textarea.scrollTop = textarea.scrollHeight * 0.75;
+                            const textLength = textarea.value.length;
+                            textarea.setSelectionRange(textLength, textLength);
+                            textarea.scrollTop = textarea.scrollHeight;
+                        }
+                    }, 0);
+                })
+                .catch(() => {
+                    setErrorMessage("게시글 정보를 불러오는 데 실패했습니다.");
+                });
         }
-    }, [content]);
+    }, [boardId]);
 
     const handleSave = async () => {
-        console.log("User ID:", userId);
         if (!title || !content) {
             setErrorMessage("제목과 내용을 모두 입력해야 합니다.");
             return;
         }
-
-        const confirmCreate = confirm("정말 저장하시겠습니까?");
+        const confirmCreate = confirm("정말 수정하시겠습니까?");
         if (!confirmCreate) return;
 
+        const boardData = {
+            boardId,
+            title,
+            content,
+            category: selectedOption?.value || "free",
+            userId: userId,
+        };
+
         try {
-            const boardData = {
-                title,
-                content,
-                category: selectedOption?.value || "free",
-                userId: userId,
-            };
+            console.log("pathname:", pathname);
+            console.log("boardId:", boardId);
+            const response = await fetch(`https://www.9unback.shop/boards/${boardId}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(boardData),
+            });
 
-            const response = await axios.post(
-                "/api/boards",
-                boardData,
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                }
-            );
-
-            if (response.status === 200) {
-                alert("저장 되었습니다.")
-                router.push("/board");
+            if (response.ok) {
+                alert("수정 되었습니다.");
+                router.back();
             } else {
-                setErrorMessage("게시글 작성 중 오류가 발생했습니다. 다시 시도해주세요.");
+                setErrorMessage("게시글 수정 중 오류가 발생했습니다. 다시 시도해주세요.");
             }
-        } catch (error: any) {
-            if (error.response) {
-                if (error.response.status === 400) {
-                    setErrorMessage("잘못된 입력값이 있습니다.");
-                } else if (error.response.status === 500) {
-                    setErrorMessage("서버 오류가 발생했습니다. 나중에 다시 시도해주세요.");
-                }
-            } else {
-                setErrorMessage("네트워크 오류가 발생했습니다. 다시 시도해주세요.");
-            }
+        } catch (error) {
+            setErrorMessage("네트워크 오류가 발생했습니다. 다시 시도해주세요.");
         }
     };
 
@@ -160,9 +166,10 @@ export default function Home() {
 
     return (
         <div className="flex flex-col items-start justify-start py-24 px-10 max-w-[1140px] mx-auto min-h-[100vh] relative">
-            <h1 className="text-3xl font-bold mb-10">새로운 게시글 작성</h1>
+            <h1 className="text-3xl font-bold mb-10">게시글 수정</h1>
 
             <div className="mb-3.5">
+                {isClient && (
                     <Select
                         value={selectedOption}
                         onChange={handleChange}
@@ -170,8 +177,9 @@ export default function Home() {
                         isSearchable={false}
                         styles={customStyles}
                         placeholder="게시판을 선택하세요"
-                        menuPortalTarget={typeof window !== "undefined" ? document.body : null}
+                        menuPortalTarget={document.body}
                     />
+                )}
             </div>
 
             <input
@@ -195,7 +203,7 @@ export default function Home() {
             )}
             <div className="flex gap-2">
                 <button onClick={handleSave} className="blue_button">
-                    저장
+                    수정
                 </button>
                 <button onClick={() => router.back()} className="gray_button">
                     취소
