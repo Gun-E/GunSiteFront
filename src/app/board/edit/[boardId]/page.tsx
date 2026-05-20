@@ -31,7 +31,7 @@ export default function EditPost() {
         setIsClient(true);
 
         if (boardId) {
-            fetch(`https://www.9unback.shop/boards/${boardId}`)
+            fetch(`/api/boards/${boardId}`)
                 .then((response) => response.json())
                 .then((data) => {
                     setTitle(data.title);
@@ -79,7 +79,7 @@ export default function EditPost() {
         try {
             console.log("pathname:", pathname);
             console.log("boardId:", boardId);
-            const response = await fetch(`https://www.9unback.shop/boards/${boardId}`, {
+            const response = await fetch(`/api/boards/${boardId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

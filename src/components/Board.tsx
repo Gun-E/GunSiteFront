@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import axios from "axios";
 import Pagination from "@/components/Pagination";
 import { useAuth } from "@/app/context/AuthContext";
-import { formatDate } from "@/format/timeFomat";
+import { formatDate } from "@/format/timeFormat";
 
 interface Board {
     boardId: number;

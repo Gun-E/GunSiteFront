@@ -6,7 +6,7 @@ import React, { useState, useEffect } from "react";
 import MoreModal from "@/components/MoreModal";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@/app/context/AuthContext";
-import { formatDate } from "@/format/timeFomat";
+import { formatDate } from "@/format/timeFormat";
 
 interface Board {
     boardId: number;
@@ -29,9 +29,7 @@ export default function Home() {
     useEffect(() => {
         if (!boardId) return;
 
-        fetch(`https://www.9unback.shop/boards/${boardId}`)
-        axios
-            .get<Board>(`/api/boards/${boardId}`)
+        fetch(`/api/boards/${boardId}`)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error("데이터를 불러오는 데 실패했습니다.");

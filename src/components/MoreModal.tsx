@@ -21,7 +21,7 @@ const MoreModal = ({ isOpen, onCloseAction, boardId }: MoreModalProps) => {
         if (!confirmDelete) return;
 
         try {
-            const response = await fetch(`https://www.9unback.shop/boards/${boardId}`, {
+            const response = await fetch(`/api/boards/${boardId}`, {
                 method: "DELETE",
             });
 

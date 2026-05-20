@@ -5,7 +5,7 @@ import BoardComponent from "@/components/BoardComponent";
 import Link from "next/link";
 import { BiChevronRight } from "react-icons/bi";
 import axios from "axios";
-import { formatDate } from "@/format/timeFomat";
+import { formatDate } from "@/format/timeFormat";
 
 interface Board {
     boardId: number;
