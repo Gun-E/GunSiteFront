@@ -16,6 +16,34 @@ export default function Home() {
             </div>
 
             <div className={styles.text_group}>
+                <h1>Career</h1>
+                <div className={styles.child_text_group}>
+                    <p>2025.04 ~</p>
+                    <p>(주)미르이즈 부설 연구소 재직중</p>
+                </div>
+                <div className={styles.child_text_group}>
+                    <p>2024.12</p>
+                    <p>LG전자 DX School 1기 우수 수료생</p>
+                </div>
+                <div className={styles.child_text_group}>
+                    <p>2024.12</p>
+                    <p>LG전자 DX School 데이터 비지니스 DX 프로젝트 우수상</p>
+                </div>
+                <div className={styles.child_text_group}>
+                    <p>2024.11</p>
+                    <p>한국언론진흥재단 주최 2024 뉴스 빅데이터 해커톤 최우수상</p>
+                </div>
+                <div className={styles.child_text_group}>
+                    <p>2024.09</p>
+                    <p>LG전자 DX School 고객경험향상 CX 프로젝트 최우수상</p>
+                </div>
+                <div className={styles.child_text_group}>
+                    <p>2024.06</p>
+                    <p>Y-mart 순천점 홈페이지 구축 외주</p>
+                </div>
+            </div>
+
+            <div className={styles.text_group}>
                 <h1>Skills</h1>
                 <div className={`${styles.child_text_group} ${styles.java}`}>
                     <p>JAVA</p>
@@ -73,7 +101,7 @@ export default function Home() {
                 </div>
                 <div className={styles.child_text_group}>
                     <p>2024.02</p>
-                    <p>조선대학교 컴퓨터 공학과 졸업</p>
+                    <p>조선대학교 컴퓨터 공학과 학사 졸업</p>
                 </div>
             </div>
 
@@ -86,31 +114,6 @@ export default function Home() {
                 <div className={styles.child_text_group}>
                     <p>2024.09.20</p>
                     <p>SQL Developer</p>
-                </div>
-            </div>
-
-
-            <div className={styles.text_group}>
-                <h1>Career</h1>
-                <div className={styles.child_text_group}>
-                    <p>2024.12</p>
-                    <p>LG전자 DX School 1기 우수 수료생</p>
-                </div>
-                <div className={styles.child_text_group}>
-                    <p>2024.12</p>
-                    <p>LG전자 DX School 데이터 비지니스 DX 프로젝트 우수상</p>
-                </div>
-                <div className={styles.child_text_group}>
-                    <p>2024.11</p>
-                    <p>한국언론진흥재단 주최 2024 뉴스 빅데이터 해커톤 최우수상</p>
-                </div>
-                <div className={styles.child_text_group}>
-                    <p>2024.09</p>
-                    <p>LG전자 DX School 고객경험향상 CX 프로젝트 최우수상</p>
-                </div>
-                <div className={styles.child_text_group}>
-                    <p>2024.06</p>
-                    <p>Y-mart 순천점 홈페이지 구축 외주</p>
                 </div>
             </div>
         </div>
