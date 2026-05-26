@@ -1,7 +1,6 @@
-"use client"
+"use client";
 
-import React, {useEffect} from "react";
-import styles from "@/styles/Header.module.css";
+import React, { useEffect } from "react";
 import { BiX } from "react-icons/bi";
 import Link from "next/link";
 import ReactDOM from "react-dom";
@@ -12,13 +11,14 @@ interface ToggleMenuProps {
     pathname: string;
 }
 
-const ToggleMenu = ({isOpen, onClose, pathname}: ToggleMenuProps) => {
+const ToggleMenu = ({ isOpen, onClose, pathname }: ToggleMenuProps) => {
     useEffect(() => {
         if (isOpen) {
             document.body.style.overflow = "hidden";
         } else {
             document.body.style.overflow = "auto";
         }
+        return () => { document.body.style.overflow = "auto"; };
     }, [isOpen]);
 
     if (!isOpen) return null;
@@ -28,8 +28,7 @@ const ToggleMenu = ({isOpen, onClose, pathname}: ToggleMenuProps) => {
         return (
             <Link
                 href={href}
-                className={`${styles.menuToggleListA} ${isActive ? styles.menuCurrent : styles.menuDefault}`}
-                aria-label={`${label} 페이지`}
+                className={`text-5xl font-bold tracking-tighter transition-colors ${isActive ? 'text-white' : 'text-gray-600 hover:text-gray-300'}`}
                 onClick={onClose}
             >
                 {label}
@@ -38,18 +37,15 @@ const ToggleMenu = ({isOpen, onClose, pathname}: ToggleMenuProps) => {
     };
 
     return ReactDOM.createPortal(
-        <div className={`${styles.modalOverlay} ${isOpen ? styles.modalOpen : styles.modalClose}`}>
-            <div className={styles.menuCloseButton}>
-                <button onClick={onClose} className={styles.menuToggle}>
-                    <BiX className="text-3xl"/>
-                </button>
+        <div className={`fixed inset-0 z-[9999] bg-black/95 backdrop-blur-3xl flex flex-col justify-center items-center transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0'}`}>
+            <button onClick={onClose} className="absolute top-6 right-6 md:top-10 md:right-10 text-white p-2">
+                <BiX className="text-5xl" />
+            </button>
+            <div className="flex flex-col gap-12 text-center">
+                {renderLink("/", "Home")}
+                {renderLink("/about", "About")}
             </div>
-            <div className={styles.menuToggleList}>
-                {renderLink("/", "홈")}
-                {renderLink("/about", "소개")}
-            </div>
-        </div>
-        ,
+        </div>,
         document.body
     );
 };
