@@ -1,6 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Gowun+Dodum&display=swap');
-@import '../../node_modules/slick-carousel/slick/slick.css';
-@import '../../node_modules/slick-carousel/slick/slick-theme.css';
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
 
 @tailwind base;
@@ -38,36 +36,7 @@ body {
 .children{
   padding-top: 1.5cm;
 }
-.customContainer {
-  padding: 56px 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #fff;
-}
-.customFormContainer {
-  width: 100%;
-  max-width: 500px;
-  padding: 80px 32px 200px 32px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-}
-.loader {
-  border: 3px solid #f3f3f3;
-  border-top: 3px solid rgb(0, 81, 255);
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  animation: spin 1s linear infinite;
-}
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
 .imageStyle {
   width: 14rem;
   padding: 2.25rem 0;
@@ -83,6 +52,7 @@ body {
     width: 500px;
   }
 }
+
 .bg-button{
   background-color: rgb(175, 193, 213);
 }
@@ -98,28 +68,7 @@ body {
 .bg-my-blue{
   background-color: rgb(0, 81, 255);
 }
-.blue_button{
-  background: rgb(0, 81, 255);
-  color: #ffffff;
-  font-weight: 500;
-  padding: 9px 16px;
-  border-radius: 50px;
-  transition: background 0.2s ease;
-}
-.blue_button:hover{
-  background: rgb(0, 67, 204);
-}
-.gray_button{
-  color: #4E5968;
-  background: #F2F4F6;
-  font-weight: 500;
-  padding: 9px 16px;
-  border-radius: 50px;
-  transition: background 0.2s ease;
-}
-.gray_button:hover{
-  background: #D1D6DB;
-}
+
 h1{
   font-weight: 600;
   font-size: 28px;

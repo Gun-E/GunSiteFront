@@ -52,23 +52,6 @@
     transition: all 0.2s ease;
 }
 
-.login_button {
-    width: 70px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50px;
-    background-color: rgb(0, 81, 255);
-    color: white;
-    font-weight: 600;
-    transition: all 0.2s ease;
-}
-
-.login_button:hover {
-    background-color: rgb(0, 75, 225);
-}
-
 .menuCurrent {
     color: rgb(0, 81, 255);
 }
@@ -160,29 +143,14 @@
 .modalOpen .menuToggleList {
     opacity: 1;
 }
-.toggle_login_button{
-    color: white;
-    padding: 10px 25px;
-    font-size: 16px;
-    font-weight: 500;
-    border-radius: 50px;
-    background-color: rgb(0, 81, 255);
-}
+
 .menuToggleListA:nth-child(1) {
     transition-delay: 0.1s;
 }
 .menuToggleListA:nth-child(2) {
     transition-delay: 0.2s;
 }
-.menuToggleListA:nth-child(3) {
-    transition-delay: 0.3s;
-}
-.menuToggleListA:nth-child(4) {
-    transition-delay: 0.4s;
-}
-.menuToggleListA:nth-child(5) {
-    transition-delay: 0.5s;
-}
+
 @media (max-width: 768px) {
     .menuList {
         display: none;

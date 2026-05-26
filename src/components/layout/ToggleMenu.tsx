@@ -8,13 +8,11 @@ import ReactDOM from "react-dom";
 
 interface ToggleMenuProps {
     isOpen: boolean;
-    isLoggedIn: boolean;
     onClose: () => void;
-    handleLogout: () => void;
     pathname: string;
 }
 
-const ToggleMenu = ({isOpen, isLoggedIn, onClose, handleLogout, pathname}: ToggleMenuProps) => {
+const ToggleMenu = ({isOpen, onClose, pathname}: ToggleMenuProps) => {
     useEffect(() => {
         if (isOpen) {
             document.body.style.overflow = "hidden";
@@ -48,18 +46,7 @@ const ToggleMenu = ({isOpen, isLoggedIn, onClose, handleLogout, pathname}: Toggl
             </div>
             <div className={styles.menuToggleList}>
                 {renderLink("/", "홈")}
-                {renderLink("/board", "게시판")}
                 {renderLink("/about", "소개")}
-                {isLoggedIn ? (
-                    <button onClick={handleLogout} className={styles.toggle_login_button} aria-label="로그아웃">
-                        로그아웃
-                    </button>
-                ) : (
-                    <Link href="/login" onClick={handleLogout} className={styles.toggle_login_button}
-                          aria-label="로그인">
-                        로그인
-                    </Link>
-                )}
             </div>
         </div>
         ,
