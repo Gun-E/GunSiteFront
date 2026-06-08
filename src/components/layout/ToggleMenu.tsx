@@ -28,7 +28,7 @@ const ToggleMenu = ({ isOpen, onClose, pathname }: ToggleMenuProps) => {
         return (
             <Link
                 href={href}
-                className={`text-5xl font-bold tracking-tighter transition-colors ${isActive ? 'text-white' : 'text-gray-600 hover:text-gray-300'}`}
+                className={`text-5xl font-bold tracking-tighter transition-colors ${isActive ? 'text-blue-300' : 'text-gray-600 hover:text-gray-300'}`}
                 onClick={onClose}
             >
                 {label}
@@ -43,7 +43,7 @@ const ToggleMenu = ({ isOpen, onClose, pathname }: ToggleMenuProps) => {
             </button>
             <div className="flex flex-col gap-12 text-center">
                 {renderLink("/", "Home")}
-                {renderLink("/about", "About")}
+                {renderLink("/about", "Career")}
             </div>
         </div>,
         document.body

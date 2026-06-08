@@ -1,70 +1,103 @@
-.about_me,
-.about_me * {
+.historyPage,
+.historyPage * {
     box-sizing: border-box;
 }
 
-.about_me {
-    padding: 106px 40px;
+.historyPage {
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: #000000;
+    color: #ffffff;
+    padding: 96px 0 132px;
+}
+
+.section {
+    width: 100%;
+    max-width: 1120px;
     margin: 0 auto;
-    width: 100%;
-    max-width: 1140px;
+    padding: 0 40px;
+}
+
+.section {
+    padding-top: 104px;
+}
+
+.projectList {
     display: flex;
     flex-direction: column;
-    gap: 40px;
 }
 
-.text_group {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.projectItem {
+    display: grid;
+    gap: 28px;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: inherit;
+    text-decoration: none;
 }
 
-.text_group h1 {
-    margin-bottom: 10px;
+.projectItem {
+    grid-template-columns: minmax(0, 1fr) 180px;
+    padding: 36px 0;
 }
 
-.child_text_group {
-    display: flex;
-    justify-content: flex-start;
+.projectItem:hover h2 {
+    color: #ffffff;
 }
 
-.child_text_group * {
-    width: 50%;
+.projectItem h2 {
+    margin: 0;
+    color: #c1c6d0;
+    font-size: clamp(22px, 2.8vw, 34px);
+    font-weight: 300;
+    line-height: 1.25;
+    transition: color 0.35s ease;
+    word-break: keep-all;
 }
 
-.rectangle_group {
-    height: auto;
-    margin: 4px auto;
-    border-radius: 50px;
-    background-color: rgb(240, 242, 244);
+.projectItem p {
+    max-width: 760px;
+    margin: 16px 0 0;
+    color: #747985;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.7;
+    word-break: keep-all;
 }
 
-.rectangle{
-    border-radius: 50px;
-    background-color: rgb(0, 81, 255);
-    height: 100%;
-    transition: width 0.3s ease;
-}
-.java .rectangle {
-    width: 95%;
-}
-.database .rectangle {
-    width: 90%;
-}
-.js .rectangle {
-    width: 65%;
-}
-.cloud .rectangle {
-    width: 75%;
-}
-.html .rectangle {
-    width: 85%;
-}
-.python .rectangle {
-    width: 55%;
-}
-.ai .rectangle {
-    width: 40%;
+.projectItem time {
+    color: #626772;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    text-align: right;
 }
 
+.projectItem:last-child {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 900px) {
+    .historyPage {
+        padding: 96px 0 104px;
+    }
+
+    .section {
+        padding-top: 88px;
+    }
+
+    .projectItem {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .projectItem time {
+        text-align: left;
+    }
+}
+
+@media (max-width: 560px) {
+    .section {
+        padding-inline: 24px;
+    }
+}

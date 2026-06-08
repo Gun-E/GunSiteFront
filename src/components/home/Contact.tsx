@@ -1,28 +1,40 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useMotionTemplate, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 
 export default function Contact() {
+    const ref = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: ref,
+        offset: ['start end', 'end end']
+    });
+    const y = useTransform(scrollYProgress, [0, 1], [36, 0]);
+    const scale = useTransform(scrollYProgress, [0, 1], [0.985, 1]);
+    const blur = useTransform(scrollYProgress, [0, 1], [8, 0]);
+    const filter = useMotionTemplate`blur(${blur}px)`;
+
     return (
-        <section className="py-40 px-6 bg-black flex flex-col items-center text-center overflow-hidden">
+        <section ref={ref} className="mx-auto flex min-h-[100svh] max-w-[1120px] flex-col items-center justify-center overflow-hidden bg-black px-6 py-24 text-center md:px-10 md:py-36">
             <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
+                initial={{ opacity: 0.72, scale: 0.985 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
+                viewport={{ once: true, margin: "0px 0px -8% 0px", amount: 0.01 }}
                 transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                className="max-w-4xl w-full p-12 md:p-24 rounded-[3rem] border border-white/10 bg-white/[0.03] backdrop-blur-2xl relative"
+                style={{ y, scale, filter }}
+                className="relative w-full overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-9 backdrop-blur-2xl md:p-16"
             >
-                <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/5 to-purple-500/5 rounded-[3rem] pointer-events-none" />
-                
-                <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tight text-white relative z-10">
-                    Let&apos;s build something.
+                <div className="pointer-events-none absolute left-1/2 top-1/2 h-64 w-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-400/10 blur-3xl" />
+                <h2 className="relative z-10 mb-8 text-4xl font-extrabold tracking-tight text-white md:text-6xl">
+                    경험이 기술이 되는 순간을<br />
+                    함께 만들어요.
                 </h2>
-                <p className="text-xl md:text-2xl text-gray-400 mb-14 font-light leading-relaxed relative z-10">
-                    새로운 도전을 기다립니다.<br className="hidden md:block" /> 백엔드 시스템부터 모던 프론트엔드까지, 안정적이고 아름다운 웹을 만듭니다.
+                <p className="relative z-10 mb-12 text-lg font-light leading-relaxed text-gray-400 md:text-xl">
+                    지식과 노하우를 나누며 함께 성장하고, 변화하는 AI 시대를 극복해가고 싶습니다.
                 </p>
                 <a 
                     href="mailto:rkdrjs71@naver.com" 
-                    className="relative z-10 inline-flex items-center justify-center px-10 py-5 rounded-full bg-white text-black font-semibold text-lg hover:scale-105 transition-transform duration-300"
+                    className="relative z-10 inline-flex items-center justify-center rounded-full bg-white px-10 py-5 text-lg font-semibold text-black transition-transform duration-300 hover:scale-105 hover:bg-blue-100"
                 >
                     Contact Me
                 </a>
