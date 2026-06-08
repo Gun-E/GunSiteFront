@@ -1,13 +1,10 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { experiences } from '@/data/experiences';
 
-const experiences = [
-    { id: 1, title: '창업진흥원(KISED) PMS 고도화 프로젝트', date: '2025.05 ~ 2025.12' },
-    { id: 2, title: 'LG전자 DX School 1기 수료', date: '2024.12' },
-    { id: 3, title: '2024 뉴스 빅데이터 해커톤 대상 (최우수상)', date: '2024.11' },
-    { id: 4, title: 'NHN 아카데미 백엔드 4기 수료', date: '2024.02' },
-];
+const MotionLink = motion(Link);
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -24,7 +21,7 @@ const itemVariants = {
 
 export default function Experience() {
     return (
-        <section className="py-32 px-6 bg-black max-w-5xl mx-auto">
+        <section id="projects" className="py-32 px-6 bg-black max-w-5xl mx-auto">
             <motion.div
                 initial="hidden"
                 whileInView="show"
@@ -37,18 +34,29 @@ export default function Experience() {
 
                 <div className="flex flex-col">
                     {experiences.map((exp) => (
-                        <motion.div
+                        <MotionLink
                             key={exp.id}
+                            href={`/projects/${exp.slug}`}
                             variants={itemVariants}
-                            className="group flex flex-col md:flex-row justify-between items-start md:items-center py-10 border-t border-white/10 first:border-t-0 hover:bg-white/[0.02] transition-colors duration-500 rounded-2xl px-6 -mx-6"
+                            className="group flex flex-col md:flex-row justify-between items-start md:items-center py-10 border-t border-white/10 first:border-t-0 hover:bg-white/[0.02] transition-colors duration-500 rounded-2xl px-6 -mx-6 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
                         >
-                            <h3 className="text-2xl md:text-3xl font-medium text-gray-400 group-hover:text-white transition-colors duration-500">
-                                {exp.title}
-                            </h3>
-                            <span className="text-sm md:text-base text-gray-600 mt-4 md:mt-0 font-light tracking-widest uppercase">
-                                {exp.date}
-                            </span>
-                        </motion.div>
+                            <div>
+                                <span className="text-xs text-gray-600 tracking-[0.3em] uppercase">
+                                    {exp.category}
+                                </span>
+                                <h3 className="mt-3 text-2xl md:text-3xl font-medium text-gray-400 group-hover:text-white transition-colors duration-500">
+                                    {exp.title}
+                                </h3>
+                            </div>
+                            <div className="flex items-center gap-5 mt-4 md:mt-0">
+                                <span className="text-sm md:text-base text-gray-600 font-light tracking-widest uppercase">
+                                    {exp.date}
+                                </span>
+                                <span className="text-gray-600 group-hover:text-white group-hover:translate-x-1 transition-all duration-500" aria-hidden="true">
+                                    →
+                                </span>
+                            </div>
+                        </MotionLink>
                     ))}
                 </div>
             </motion.div>
