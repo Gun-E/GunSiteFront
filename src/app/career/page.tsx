@@ -23,7 +23,6 @@ export default function CareerPage() {
                 description="문제를 마주한 방식, 구조를 잡아간 과정, 그리고 실제 서비스로 이어진 결과들."
                 titleLevel="h1"
                 trigger="load"
-                parallax
                 className="min-h-[calc(100svh-96px)] py-20"
             />
 

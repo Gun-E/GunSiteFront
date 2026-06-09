@@ -17,7 +17,6 @@ type StatementSectionProps = {
     title: ReactNode;
     titleLevel?: "h1" | "h2";
     trigger?: "load" | "view";
-    parallax?: boolean;
     className?: string;
     contentClassName?: string;
 };
@@ -27,7 +26,6 @@ export default function StatementSection({
     title,
     titleLevel = "h2",
     trigger = "view",
-    parallax = false,
     className = "",
     contentClassName = "",
 }: StatementSectionProps) {
