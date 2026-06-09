@@ -36,8 +36,8 @@ const licences = [
 const ease = [0.16, 1, 0.3, 1] as const;
 
 const itemVariants = {
-    hidden: { opacity: 0.24, y: 36, scale: 0.985, filter: "blur(12px)" },
-    show: { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", transition: { duration: 0.9, ease } },
+    hidden: { opacity: 0.64, y: 36, scale: 0.985 },
+    show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.9, ease } },
 };
 
 const revealViewport = { once: true, margin: "0px 0px -8% 0px", amount: 0.01 };

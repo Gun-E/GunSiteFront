@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { useRef } from "react";
-import { motion, useMotionTemplate, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { experiences } from "@/data/experiences";
 
 type ProjectExperience = (typeof experiences)[number];
@@ -11,23 +10,13 @@ type ProjectExperience = (typeof experiences)[number];
 const ease = [0.16, 1, 0.3, 1] as const;
 
 const itemVariants = {
-    hidden: { opacity: 0.24, y: 36, scale: 0.985, filter: "blur(12px)" },
-    show: { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", transition: { duration: 0.9, ease } },
+    hidden: { opacity: 0.64, y: 36, scale: 0.985 },
+    show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.9, ease } },
 };
 
 const revealViewport = { once: true, margin: "0px 0px -8% 0px", amount: 0.01 };
 
 export default function ProjectDetailView({ experience }: { experience: ProjectExperience }) {
-    const heroRef = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: heroRef,
-        offset: ["start start", "end start"],
-    });
-    const heroY = useTransform(scrollYProgress, [0, 1], [0, 80]);
-    const heroOpacity = useTransform(scrollYProgress, [0, 1], [1, 0.18]);
-    const heroBlur = useTransform(scrollYProgress, [0, 1], [0, 12]);
-    const heroFilter = useMotionTemplate`blur(${heroBlur}px)`;
-
     return (
         <main className="min-h-screen bg-black pb-32 pt-36 text-white">
             <article className="mx-auto max-w-[1120px] px-6 md:px-10">
@@ -46,9 +35,7 @@ export default function ProjectDetailView({ experience }: { experience: ProjectE
                 </motion.div>
 
                 <motion.div
-                    ref={heroRef}
                     className="mt-14 flex min-h-[58svh] items-center border-t border-white/10 py-16 md:min-h-[64svh] md:py-20"
-                    style={{ y: heroY, opacity: heroOpacity, filter: heroFilter }}
                 >
                     <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_320px]">
                         <motion.div

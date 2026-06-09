@@ -1,28 +1,16 @@
 'use client';
 
-import { motion, useMotionTemplate, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { motion } from 'framer-motion';
 
 export default function Contact() {
-    const ref = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: ref,
-        offset: ['start end', 'end end']
-    });
-    const y = useTransform(scrollYProgress, [0, 1], [36, 0]);
-    const scale = useTransform(scrollYProgress, [0, 1], [0.985, 1]);
-    const blur = useTransform(scrollYProgress, [0, 1], [8, 0]);
-    const filter = useMotionTemplate`blur(${blur}px)`;
-
     return (
-        <section ref={ref} className="relative mx-auto flex min-h-[100svh] max-w-[1120px] flex-col items-center justify-center bg-black px-6 py-24 text-center md:px-10 md:py-36">
+        <section className="relative mx-auto flex min-h-[100svh] max-w-[1120px] flex-col items-center justify-center bg-black px-6 py-24 text-center md:px-10 md:py-36">
             <div className="pointer-events-none absolute left-1/2 top-1/2 h-80 w-[min(90vw,760px)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-400/[0.16] blur-3xl" />
             <motion.div
                 initial={{ opacity: 0.72, scale: 0.985 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: "0px 0px -8% 0px", amount: 0.01 }}
                 transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                style={{ y, scale, filter }}
                 className="relative z-10 w-full max-w-4xl"
             >
                 <h2 className="relative z-10 mb-8 break-keep text-[clamp(2rem,9vw,2.65rem)] font-extrabold leading-[1.08] tracking-tight text-white md:text-6xl md:leading-[1.05]">
@@ -41,7 +29,7 @@ export default function Contact() {
                 </p>
                 <a 
                     href="mailto:rkdrjs71@naver.com" 
-                    className="relative z-10 inline-flex items-center justify-center rounded-full bg-white px-10 py-5 text-lg font-semibold text-black transition-transform duration-300 hover:scale-105 hover:bg-blue-100"
+                    className="relative z-10 inline-flex items-center justify-center rounded-full bg-white px-10 py-5 text-lg font-semibold text-black no-underline transition-transform duration-300 hover:scale-105 hover:bg-blue-100"
                 >
                     Contact Me
                 </a>
