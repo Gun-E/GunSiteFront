@@ -37,9 +37,9 @@ export default function StatementSection({
 
     return (
         <motion.section
-            className={`relative mx-auto flex min-h-[100svh] max-w-[1120px] items-center overflow-hidden bg-black px-6 py-24 md:px-10 md:py-36 ${className}`}
+            className={`relative mx-auto flex min-h-[100svh] max-w-[1120px] items-center bg-black px-6 py-24 md:px-10 md:py-36 ${className}`}
         >
-            <div className="pointer-events-none absolute left-0 top-1/2 h-72 w-[min(86vw,760px)] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(96,165,250,0.42)_0%,rgba(96,165,250,0.24)_32%,rgba(96,165,250,0.10)_58%,rgba(96,165,250,0)_78%)] mix-blend-screen md:left-4" />
+            <div className="pointer-events-none absolute left-1/2 top-1/2 h-[560px] w-[120vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(96,165,250,0.18)_0%,rgba(96,165,250,0.085)_34%,rgba(96,165,250,0.032)_58%,rgba(96,165,250,0)_82%)] mix-blend-screen md:left-0 md:w-[980px] md:-translate-x-40" />
             <motion.div className={`relative z-10 w-full ${contentClassName}`} {...contentMotionProps}>
                 {titleLevel === "h1" ? (
                     <h1 className={titleClassName}>{title}</h1>

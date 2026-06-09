@@ -6,8 +6,8 @@ export default function Hero() {
     const ease = [0.16, 1, 0.3, 1] as const;
 
     return (
-        <section className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden bg-black px-6 py-28 md:px-10">
-            <div className="pointer-events-none absolute left-1/2 top-1/2 h-[560px] w-[min(86vw,840px)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(96,165,250,0.42)_0%,rgba(96,165,250,0.24)_32%,rgba(96,165,250,0.10)_58%,rgba(96,165,250,0)_78%)] mix-blend-screen" />
+        <section className="relative flex min-h-[100svh] flex-col items-center justify-center bg-black px-6 py-28 md:px-10">
+            <div className="pointer-events-none absolute left-1/2 top-1/2 h-[720px] w-[min(128vw,1040px)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(96,165,250,0.18)_0%,rgba(96,165,250,0.085)_34%,rgba(96,165,250,0.032)_58%,rgba(96,165,250,0)_82%)] mix-blend-screen" />
             <motion.div className="z-10 flex w-full max-w-[1120px] flex-col items-center text-center">
                 <div className="overflow-hidden">
                     <motion.h1
