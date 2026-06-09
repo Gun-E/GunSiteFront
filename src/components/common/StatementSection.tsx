@@ -55,7 +55,7 @@ export default function StatementSection({
             className={`relative mx-auto flex min-h-[100svh] max-w-[1120px] items-center overflow-hidden bg-black px-6 py-24 md:px-10 md:py-36 ${className}`}
             style={sectionStyle}
         >
-            <div className="pointer-events-none absolute left-6 top-1/2 h-56 w-[min(72vw,680px)] -translate-y-1/2 rounded-full bg-blue-400/10 blur-3xl md:left-10" />
+            <div className="pointer-events-none absolute left-6 top-1/2 h-56 w-[min(72vw,680px)] -translate-y-1/2 rounded-full bg-blue-400/[0.16] blur-3xl md:left-10" />
             <motion.div className={`relative w-full ${contentClassName}`} {...contentMotionProps}>
                 {titleLevel === "h1" ? (
                     <h1 className={titleClassName}>{title}</h1>

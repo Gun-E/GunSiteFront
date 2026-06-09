@@ -56,7 +56,7 @@ export default function ProjectDetailView({ experience }: { experience: ProjectE
                             initial={itemVariants.hidden}
                             animate={itemVariants.show}
                         >
-                            <div className="pointer-events-none absolute -left-8 top-10 h-72 w-[min(70vw,680px)] rounded-full bg-blue-400/10 blur-3xl" />
+                            <div className="pointer-events-none absolute -left-8 top-10 h-72 w-[min(70vw,680px)] rounded-full bg-blue-400/[0.16] blur-3xl" />
                             <h1 className="relative max-w-4xl text-5xl font-extrabold leading-[0.98] tracking-tight text-white md:text-7xl">
                                 {experience.title}
                             </h1>

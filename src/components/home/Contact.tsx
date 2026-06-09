@@ -15,21 +15,28 @@ export default function Contact() {
     const filter = useMotionTemplate`blur(${blur}px)`;
 
     return (
-        <section ref={ref} className="mx-auto flex min-h-[100svh] max-w-[1120px] flex-col items-center justify-center overflow-hidden bg-black px-6 py-24 text-center md:px-10 md:py-36">
+        <section ref={ref} className="relative mx-auto flex min-h-[100svh] max-w-[1120px] flex-col items-center justify-center bg-black px-6 py-24 text-center md:px-10 md:py-36">
+            <div className="pointer-events-none absolute left-1/2 top-1/2 h-80 w-[min(90vw,760px)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-400/[0.16] blur-3xl" />
             <motion.div
                 initial={{ opacity: 0.72, scale: 0.985 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: "0px 0px -8% 0px", amount: 0.01 }}
                 transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                 style={{ y, scale, filter }}
-                className="relative w-full overflow-hidden rounded-[1.75rem] bg-white/[0.03] p-9 backdrop-blur-2xl md:p-16"
+                className="relative z-10 w-full max-w-4xl"
             >
-                <div className="pointer-events-none absolute left-1/2 top-1/2 h-64 w-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-400/10 blur-3xl" />
-                <h2 className="relative z-10 mb-8 text-4xl font-extrabold tracking-tight text-white md:text-6xl">
-                    경험이 기술이 되는 순간을<br />
-                    함께 만들어요.
+                <h2 className="relative z-10 mb-8 break-keep text-[clamp(2rem,9vw,2.65rem)] font-extrabold leading-[1.08] tracking-tight text-white md:text-6xl md:leading-[1.05]">
+                    <span className="hidden md:inline">
+                        경험이 기술이 되는 순간을<br />
+                        함께 만들어요.
+                    </span>
+                    <span className="md:hidden">
+                        경험이 기술이<br />
+                        되는 순간을 함께<br />
+                        만들어요.
+                    </span>
                 </h2>
-                <p className="relative z-10 mb-12 text-lg font-light leading-relaxed text-gray-400 md:text-xl">
+                <p className="relative z-10 mx-auto mb-12 max-w-2xl break-keep text-lg font-light leading-relaxed text-gray-400 md:text-xl">
                     지식과 노하우를 나누며 함께 성장하고, 변화하는 AI 시대를 극복해가고 싶습니다.
                 </p>
                 <a 
