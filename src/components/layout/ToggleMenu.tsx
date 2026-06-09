@@ -24,7 +24,7 @@ const ToggleMenu = ({ isOpen, onClose, pathname }: ToggleMenuProps) => {
     if (!isOpen) return null;
 
     const renderLink = (href: string, label: string) => {
-        const isActive = pathname === href;
+        const isActive = pathname === href || (href === "/career" && pathname.startsWith("/projects/"));
         return (
             <Link
                 href={href}
@@ -43,7 +43,7 @@ const ToggleMenu = ({ isOpen, onClose, pathname }: ToggleMenuProps) => {
             </button>
             <div className="flex flex-col gap-12 text-center">
                 {renderLink("/", "Home")}
-                {renderLink("/about", "Career")}
+                {renderLink("/career", "Career")}
             </div>
         </div>,
         document.body

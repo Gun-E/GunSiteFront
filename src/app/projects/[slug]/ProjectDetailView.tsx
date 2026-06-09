@@ -37,7 +37,7 @@ export default function ProjectDetailView({ experience }: { experience: ProjectE
                     transition={{ duration: 0.7, ease }}
                 >
                     <Link
-                        href="/about"
+                        href="/career"
                         className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-5 py-3 text-sm text-gray-400 backdrop-blur-md transition-colors hover:border-blue-300/40 hover:text-white"
                     >
                         <span aria-hidden="true">←</span>
@@ -131,10 +131,10 @@ export default function ProjectDetailView({ experience }: { experience: ProjectE
                 {"sections" in experience && experience.sections && (
                     <ProjectSection title="세부 기록">
                         <div className="space-y-10">
-                            {experience.sections.map((section) => (
+                            {experience.sections.map((section, index) => (
                                 <motion.section
                                     key={section.title}
-                                    className="border-t border-white/10 pt-8"
+                                    className={index === 0 ? "" : "border-t border-white/10 pt-8"}
                                     initial={itemVariants.hidden}
                                     whileInView={itemVariants.show}
                                     viewport={revealViewport}

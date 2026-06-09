@@ -22,7 +22,7 @@ export default function Contact() {
                 viewport={{ once: true, margin: "0px 0px -8% 0px", amount: 0.01 }}
                 transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                 style={{ y, scale, filter }}
-                className="relative w-full overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-9 backdrop-blur-2xl md:p-16"
+                className="relative w-full overflow-hidden rounded-[1.75rem] bg-white/[0.03] p-9 backdrop-blur-2xl md:p-16"
             >
                 <div className="pointer-events-none absolute left-1/2 top-1/2 h-64 w-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-400/10 blur-3xl" />
                 <h2 className="relative z-10 mb-8 text-4xl font-extrabold tracking-tight text-white md:text-6xl">

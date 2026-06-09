@@ -31,7 +31,7 @@ export default function Header() {
 
                     <nav className="hidden items-center gap-8 rounded-full border border-white/10 bg-white/[0.03] px-8 py-2.5 backdrop-blur-md md:flex">
                         <NavItem href="/" label="Home" currentPath={pathname} />
-                        <NavItem href="/about" label="Career" currentPath={pathname} />
+                        <NavItem href="/career" label="Career" currentPath={pathname} />
                     </nav>
 
                     <button onClick={() => setIsMenuOpen(true)} className="text-white md:hidden" aria-label="Menu Toggle">
@@ -46,7 +46,7 @@ export default function Header() {
 }
 
 function NavItem({ href, label, currentPath }: { href: string; label: string; currentPath: string }) {
-    const isActive = currentPath === href;
+    const isActive = currentPath === href || (href === "/career" && currentPath.startsWith("/projects/"));
     return (
         <Link
             href={href}
