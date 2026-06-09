@@ -5,11 +5,12 @@ import StatementSection from "@/components/common/StatementSection";
 
 const career = [
     { date: "2025.04 ~", title: "(주)미르이즈 부설 연구소 재직중" },
+    { date: "2025.05 ~ 2025.12", title: "창업진흥원(KISED) PMS 고도화 프로젝트" },
     { date: "2024.12", title: "LG전자 DX School 1기 우수 수료생" },
     { date: "2024.12", title: "LG전자 DX School 데이터 비지니스 DX 프로젝트 우수상" },
-    { date: "2024.11", title: "한국언론진흥재단 주최 2024 뉴스 빅데이터 해커톤 최우수상" },
+    { date: "2024.11", title: "한국언론진흥재단 주최 2024 뉴스 빅데이터 해커톤" },
     { date: "2024.09", title: "LG전자 DX School 고객경험향상 CX 프로젝트 최우수상" },
-    { date: "2024.06", title: "Y-mart 순천점 홈페이지 구축 외주" },
+    { date: "2024.06", title: "Y-Mart 순천점 온라인 마켓 플랫폼 구축" },
 ];
 
 const skills = [

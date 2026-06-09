@@ -5,7 +5,7 @@ export const experiences = [
         title: '창업진흥원(KISED) PMS 고도화 프로젝트',
         date: '2025.05 ~ 2025.12',
         category: 'Project',
-        summary: '창업진흥원 PMS 고도화 프로젝트의 AI-OCR 영역에서 PMS 연동 웹, AI-OCR 솔루션 관리자 웹, EDMS 연동 Java API 담당',
+        summary: '창업진흥원 PMS 고도화 과정에서 AI-OCR 운영, 중복성 검토, EDMS 문서 연동 흐름을 연결한 업무 시스템 고도화 프로젝트',
         role: 'PMS 연동 웹 / AI-OCR 솔루션 관리자 웹 / EDMS 연동 Java API',
         stack: ['Java 17', 'Spring Boot', 'Django', 'Oracle', 'MyBatis', 'PDF.js', 'JavaScript', 'Chart.js'],
         overview: [
@@ -133,10 +133,10 @@ export const experiences = [
     {
         id: 3,
         slug: 'lg-dx-school',
-        title: 'LG전자 DX School 1기 수료',
+        title: 'LG전자 DX School 1기',
         date: '2024.05 ~ 2024.12',
         category: 'Education',
-        summary: 'LG전자 DX School 1기에서 고객 경험 기반 서비스 기획, 데이터 분석, 풀스택 개발, PM 역할 수행',
+        summary: '고객 경험 기반 문제 정의에서 데이터 분석, 서비스 기획, 웹 서비스 개발과 배포까지 연결한 실무형 교육 과정',
         role: 'PM / Full-stack Developer',
         stack: ['Spring Boot', 'Next.js', 'React', 'FastAPI', 'MySQL', 'OpenAI API', 'DALL-E API', 'Vercel'],
         overview: [
@@ -192,10 +192,10 @@ export const experiences = [
     {
         id: 4,
         slug: 'news-bigdata-hackathon',
-        title: '한국언론진흥재단 주최 2024 뉴스 빅데이터 해커톤 최우수상',
+        title: '한국언론진흥재단 주최 2024 뉴스 빅데이터 해커톤',
         date: '2024.10 ~ 2024.11',
         category: 'Award',
-        summary: '뉴스 빅데이터와 생성형 AI를 결합한 빅카인즈 AI 발전 서비스 CRONEWS로 2024 뉴스 빅데이터 해커톤 최우수상 수상',
+        summary: '뉴스 빅데이터와 생성형 AI를 결합해 시사 키워드를 퀴즈와 기사 맥락으로 학습하는 빅카인즈 AI 발전 서비스 제안',
         role: 'PM / Service Planner / Full-stack Developer',
         stack: ['Spring Boot', 'Next.js', 'React', 'FastAPI', 'MySQL', 'BigKinds API', 'Claude API', 'AWS', 'Docker', 'Vercel'],
         overview: [
@@ -252,7 +252,7 @@ export const experiences = [
         title: 'Y-Mart 순천점 온라인 마켓 플랫폼 구축',
         date: '2024.03 ~ 2024.06',
         category: 'Project',
-        summary: 'Y-Mart(영암마트)의 온라인 전략에 맞춘 마켓 플랫폼 구축 프로젝트에서 프론트엔드, 로그인 API, 데이터베이스, 클라우드 인프라 담당',
+        summary: '오프라인 지역 마켓의 상품 탐색과 주문 접점을 온라인으로 확장하기 위한 Spring 기반 마켓 플랫폼 구축 프로젝트',
         role: 'Full-stack Developer',
         stack: ['Spring Boot', 'Spring MVC', 'Spring Security', 'Thymeleaf', 'Bootstrap', 'jQuery', 'MySQL', 'AWS EC2', 'AWS S3', 'AWS VPC', 'Docker', 'Maven'],
         overview: [
@@ -309,7 +309,7 @@ export const experiences = [
     {
         id: 6,
         slug: 'nhn-academy-backend',
-        title: 'NHN 아카데미 백엔드 4기 수료',
+        title: 'NHN 아카데미 자바 백엔드 4기',
         date: '2023.08 ~ 2024.03',
         category: 'Education',
         summary: 'Java와 Spring 기반 백엔드 개발 기본기, API 설계, 데이터베이스 설계, 협업 개발을 다룬 교육 과정',
