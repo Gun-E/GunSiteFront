@@ -37,13 +37,13 @@ export default function ProjectDetailView({ experience }: { experience: ProjectE
                 <motion.div
                     className="mt-14 flex min-h-[58svh] items-center border-t border-white/10 py-16 md:min-h-[64svh] md:py-20"
                 >
-                    <div className="relative grid gap-12 lg:grid-cols-[minmax(0,1fr)_320px]">
-                        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[560px] w-[120vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(96,165,250,0.18)_0%,rgba(96,165,250,0.085)_34%,rgba(96,165,250,0.032)_58%,rgba(96,165,250,0)_82%)] mix-blend-screen md:left-0 md:w-[980px] md:-translate-x-40" />
+                    <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_320px]">
                         <motion.div
                             className="relative"
                             initial={itemVariants.hidden}
                             animate={itemVariants.show}
                         >
+                            <div className="pointer-events-none absolute left-1/2 top-1/2 h-[520px] w-[120vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(96,165,250,0.18)_0%,rgba(96,165,250,0.085)_34%,rgba(96,165,250,0.032)_58%,rgba(96,165,250,0)_82%)] mix-blend-screen md:left-0 md:w-[980px] md:-translate-x-40" />
                             <h1 className="relative max-w-4xl text-5xl font-extrabold leading-[0.98] tracking-tight text-white md:text-7xl">
                                 {experience.title}
                             </h1>
