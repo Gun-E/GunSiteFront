@@ -41,8 +41,8 @@ export default function StatementSection({
         <motion.section
             className={`relative mx-auto flex min-h-[100svh] max-w-[1120px] items-center overflow-hidden bg-black px-6 py-24 md:px-10 md:py-36 ${className}`}
         >
-            <div className="pointer-events-none absolute left-6 top-1/2 h-56 w-[min(72vw,680px)] -translate-y-1/2 rounded-full bg-blue-400/[0.16] blur-3xl md:left-10" />
-            <motion.div className={`relative w-full ${contentClassName}`} {...contentMotionProps}>
+            <div className="pointer-events-none absolute left-0 top-1/2 h-72 w-[min(86vw,760px)] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(96,165,250,0.42)_0%,rgba(96,165,250,0.24)_32%,rgba(96,165,250,0.10)_58%,rgba(96,165,250,0)_78%)] mix-blend-screen md:left-4" />
+            <motion.div className={`relative z-10 w-full ${contentClassName}`} {...contentMotionProps}>
                 {titleLevel === "h1" ? (
                     <h1 className={titleClassName}>{title}</h1>
                 ) : (

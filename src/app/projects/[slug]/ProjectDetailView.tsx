@@ -37,13 +37,13 @@ export default function ProjectDetailView({ experience }: { experience: ProjectE
                 <motion.div
                     className="mt-14 flex min-h-[58svh] items-center border-t border-white/10 py-16 md:min-h-[64svh] md:py-20"
                 >
-                    <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_320px]">
+                    <div className="relative grid gap-12 lg:grid-cols-[minmax(0,1fr)_320px]">
+                        <div className="pointer-events-none absolute -left-10 top-6 h-80 w-[min(86vw,760px)] rounded-full bg-[radial-gradient(circle,rgba(96,165,250,0.42)_0%,rgba(96,165,250,0.24)_32%,rgba(96,165,250,0.10)_58%,rgba(96,165,250,0)_78%)] mix-blend-screen" />
                         <motion.div
                             className="relative"
                             initial={itemVariants.hidden}
                             animate={itemVariants.show}
                         >
-                            <div className="pointer-events-none absolute -left-8 top-10 h-72 w-[min(70vw,680px)] rounded-full bg-blue-400/[0.16] blur-3xl" />
                             <h1 className="relative max-w-4xl text-5xl font-extrabold leading-[0.98] tracking-tight text-white md:text-7xl">
                                 {experience.title}
                             </h1>

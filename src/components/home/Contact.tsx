@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 export default function Contact() {
     return (
         <section className="relative mx-auto flex min-h-[100svh] max-w-[1120px] flex-col items-center justify-center bg-black px-6 py-24 text-center md:px-10 md:py-36">
-            <div className="pointer-events-none absolute left-1/2 top-1/2 h-80 w-[min(90vw,760px)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-400/[0.16] blur-3xl" />
+            <div className="pointer-events-none absolute left-1/2 top-1/2 h-96 w-[min(92vw,840px)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(96,165,250,0.42)_0%,rgba(96,165,250,0.24)_32%,rgba(96,165,250,0.10)_58%,rgba(96,165,250,0)_78%)] mix-blend-screen" />
             <motion.div
                 initial={{ opacity: 0.72, scale: 0.985 }}
                 whileInView={{ opacity: 1, scale: 1 }}
